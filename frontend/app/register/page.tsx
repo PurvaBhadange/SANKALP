@@ -104,40 +104,43 @@ export default function RegisterStartup() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f8fafc] text-slate-900 flex flex-col justify-between relative overflow-hidden font-sans">
+    <div className="min-h-screen bg-[#FFFDF5] text-black flex flex-col justify-between relative overflow-hidden font-sans bg-halftone">
       {/* Top Header */}
-      <header className="border-b border-slate-200 bg-[#19322b] text-white px-6 py-4 flex items-center justify-between relative z-10 shadow-sm">
+      <header className="border-b-4 border-black bg-black text-white px-6 py-4 flex items-center justify-between relative z-10">
         <div className="flex items-center gap-3">
-          <Link href="/login" className="p-2 rounded-xl bg-[#142620] hover:bg-[#23463c] text-emerald-200 hover:text-white border border-emerald-800 transition-all">
-            <ArrowLeft className="w-4 h-4" />
+          <Link href="/login" className="p-2 bg-[#FFD93D] text-black border-2 border-black font-black shadow-[2px_2px_0px_0px_#000] hover:bg-[#ffcc00] transition-all">
+            <ArrowLeft className="w-4 h-4 stroke-[3px]" />
           </Link>
           <div>
-            <span className="font-extrabold text-white text-base tracking-tight font-serif">SANKALP</span>
-            <span className="block text-[10px] text-emerald-200 uppercase tracking-wider">Startup Onboarding</span>
+            <span className="font-black text-white text-lg tracking-tighter uppercase font-display">SANKALP</span>
+            <span className="block text-[10px] text-[#FFD93D] uppercase tracking-wider font-black">Startup Onboarding</span>
           </div>
         </div>
 
-        <Link href="/login" className="text-xs text-amber-300 hover:underline font-bold">
+        <Link href="/login" className="text-xs text-[#FFD93D] hover:underline font-black uppercase">
           Already registered? Sign In
         </Link>
       </header>
 
       {/* Main Content Area */}
       <main className="max-w-4xl mx-auto w-full px-4 py-8 relative z-10 my-auto">
-        <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xl space-y-6">
+        <div className="bg-white p-6 sm:p-10 border-4 border-black shadow-[12px_12px_0px_0px_#000] space-y-6">
           <div>
-            <h1 className="text-2xl font-bold text-slate-900 tracking-tight font-serif flex items-center gap-2">
-              <Building2 className="w-6 h-6 text-[#19322b]" />
+            <div className="inline-block border-2 border-black bg-[#FFD93D] text-black px-3 py-1 font-black text-xs uppercase tracking-widest -rotate-1 shadow-[2px_2px_0px_0px_#000] mb-2">
+              DPIIT STARTUP ONBOARDING
+            </div>
+            <h1 className="text-3xl font-black text-black tracking-tight font-display uppercase flex items-center gap-2">
+              <Building2 className="w-7 h-7 text-black stroke-[3px]" />
               Startup Entity Registration
             </h1>
-            <p className="text-xs text-slate-600 mt-1 font-normal">
+            <p className="text-xs text-black font-bold mt-1 uppercase">
               Create your startup account to enable AI semantic matching with public procurement challenges.
             </p>
           </div>
 
           {error && (
-            <div className="p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 flex items-start gap-3 text-xs leading-relaxed font-medium">
-              <AlertCircle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
+            <div className="p-4 bg-[#FF6B6B] border-4 border-black text-black flex items-start gap-3 text-xs leading-relaxed font-black uppercase shadow-[4px_4px_0px_0px_#000]">
+              <AlertCircle className="w-5 h-5 text-black shrink-0 mt-0.5 stroke-[3px]" />
               <span>{error}</span>
             </div>
           )}
@@ -146,7 +149,7 @@ export default function RegisterStartup() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* Founder Name */}
               <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                <label className="block text-xs font-black text-black uppercase tracking-wider mb-1">
                   Primary Contact / Founder Name
                 </label>
                 <input
@@ -161,7 +164,7 @@ export default function RegisterStartup() {
 
               {/* Startup Name */}
               <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                <label className="block text-xs font-black text-black uppercase tracking-wider mb-1">
                   Registered Startup Name
                 </label>
                 <input
@@ -176,7 +179,7 @@ export default function RegisterStartup() {
 
               {/* Email */}
               <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                <label className="block text-xs font-black text-black uppercase tracking-wider mb-1">
                   Official Email Address
                 </label>
                 <input
@@ -191,7 +194,7 @@ export default function RegisterStartup() {
 
               {/* Password */}
               <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                <label className="block text-xs font-black text-black uppercase tracking-wider mb-1">
                   Account Password
                 </label>
                 <input
@@ -206,7 +209,7 @@ export default function RegisterStartup() {
 
               {/* Reg Number */}
               <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                <label className="block text-xs font-black text-black uppercase tracking-wider mb-1">
                   Registration / CIN Number
                 </label>
                 <input
@@ -221,13 +224,13 @@ export default function RegisterStartup() {
 
               {/* Sector Dropdown */}
               <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                <label className="block text-xs font-black text-black uppercase tracking-wider mb-1">
                   Primary Technology Sector
                 </label>
                 <select
                   value={sectorId}
                   onChange={(e) => setSectorId(e.target.value)}
-                  className="gov-input bg-white cursor-pointer"
+                  className="gov-input bg-white cursor-pointer font-bold"
                 >
                   {sectors.map((s) => (
                     <option key={s.id} value={s.id}>
@@ -240,7 +243,7 @@ export default function RegisterStartup() {
 
             {/* Description */}
             <div>
-              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+              <label className="block text-xs font-black text-black uppercase tracking-wider mb-1">
                 Startup Product & Core Solution Summary
               </label>
               <textarea
@@ -261,13 +264,13 @@ export default function RegisterStartup() {
               >
                 {loading ? (
                   <>
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                    <span>Creating Startup Account...</span>
+                    <Loader2 className="w-5 h-5 animate-spin stroke-[3px]" />
+                    <span>Creating Account...</span>
                   </>
                 ) : (
                   <>
                     <span>Complete Registration</span>
-                    <ArrowRight className="w-4 h-4" />
+                    <ArrowRight className="w-5 h-5 stroke-[3px]" />
                   </>
                 )}
               </button>
@@ -277,7 +280,7 @@ export default function RegisterStartup() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-slate-200 bg-white py-3 text-center text-xs text-slate-600 relative z-10">
+      <footer className="border-t-4 border-black bg-black py-4 text-center text-xs text-white font-mono font-bold uppercase relative z-10">
         <p>SANKALP — Smart Innovation Procurement Platform | SIH 2026</p>
       </footer>
     </div>

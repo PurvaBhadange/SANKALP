@@ -112,12 +112,12 @@ export default function NewChallenge() {
 
       <main className="max-w-3xl mx-auto px-4 py-12 relative z-10">
         <div className="mb-8">
-          <Link href="/challenges" className="inline-flex items-center gap-1 text-xs font-bold text-[#bd5332] hover:underline mb-2">
+          <Link href="/challenges" className="inline-flex items-center gap-1 text-xs font-bold theme-accent-text hover:underline mb-2">
             <ArrowLeft className="w-3.5 h-3.5" />
             Back to Challenges Catalog
           </Link>
           <h1 className="text-3xl font-bold font-serif text-slate-900 tracking-tight flex items-center gap-2">
-            <Building2 className="w-7 h-7 text-[#19322b]" />
+            <Building2 className="w-7 h-7 theme-accent-text" />
             New Challenge Definition
           </h1>
           <p className="text-slate-600 mt-2 text-xs sm:text-sm font-normal">

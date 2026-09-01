@@ -6,12 +6,13 @@ import { Navbar } from "@/components/Navbar";
 import { 
   Building2, Sparkles, ArrowRight, ShieldCheck, CheckCircle2, 
   Layers, Plus, Minus, Cpu, Award, Zap, Bot, 
-  Lock, TrendingUp, HelpCircle, X, Sprout, Car, Droplets, Stethoscope, FileText
+  Lock, TrendingUp, HelpCircle, X, Sprout, Car, Droplets, Stethoscope,
+  Users, Globe, CheckCircle
 } from "lucide-react";
 
 export default function HomePage() {
   // -------------------------------------------------------------------
-  // Maharashtra Startup Week FAQ Accordion State (Single Open Item)
+  // FAQ Accordion State (Single Open Item)
   // -------------------------------------------------------------------
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
@@ -20,7 +21,7 @@ export default function HomePage() {
   };
 
   // -------------------------------------------------------------------
-  // Ask SANKALP AI Chatbot Widget Floating Modal State (GeMMy inspired)
+  // Ask SANKALP AI Chatbot Widget Floating Modal State
   // -------------------------------------------------------------------
   const [aiWidgetOpen, setAiWidgetOpen] = useState(false);
   const [userQuery, setUserQuery] = useState("");
@@ -49,7 +50,7 @@ export default function HomePage() {
   };
 
   // -------------------------------------------------------------------
-  // FAQ Data List (Maharashtra Startup Week Inspired)
+  // FAQ Data List
   // -------------------------------------------------------------------
   const faqList = [
     {
@@ -75,167 +76,171 @@ export default function HomePage() {
   ];
 
   // -------------------------------------------------------------------
-  // Clean, Sober, Natural Domain Showcase Categories
+  // Sector Outlets Showcase
   // -------------------------------------------------------------------
   const domainCategories = [
     {
-      title: "AgriTech & Irrigation",
-      subtitle: "IoT Soil Health Sensors, Satellite Telemetry & Crop Diagnostics",
+      title: "AgriTech & Smart Farming Hub",
+      subtitle: "IoT Soil Health Sensors, Satellite Telemetry & Precision Crop Diagnostics",
       icon: Sprout,
-      color: "bg-[#e8f5e9] text-[#1b3b30] border-[#a5d6a7]",
-      tag: "1,240+ STARTUPS"
+      color: "bg-emerald-50 text-emerald-800 border-emerald-200",
+      tag: "1,240+ STARTUPS",
+      metrics: "₹480 Cr Authorized Orders"
     },
     {
-      title: "Smart Cities & Mobility",
+      title: "Smart Cities & Mobility Hub",
       subtitle: "AI Traffic Signals, Emergency Green Corridors & EV Infrastructure",
       icon: Car,
-      color: "bg-[#fff3e0] text-[#c85a32] border-[#ffcc80]",
-      tag: "2,850+ STARTUPS"
+      color: "bg-blue-50 text-blue-800 border-blue-200",
+      tag: "2,850+ STARTUPS",
+      metrics: "₹620 Cr Authorized Orders"
     },
     {
-      title: "CleanTech & Water",
+      title: "CleanTech & Water Hub",
       subtitle: "Pipeline Contamination Probes, Solar Arrays & Waste Management",
       icon: Droplets,
-      color: "bg-[#e0f2fe] text-[#0369a1] border-[#7dd3fc]",
-      tag: "940+ STARTUPS"
+      color: "bg-cyan-50 text-cyan-800 border-cyan-200",
+      tag: "940+ STARTUPS",
+      metrics: "₹390 Cr Authorized Orders"
     },
     {
-      title: "HealthTech & Medical AI",
-      subtitle: "Remote Diagnostics, Telemedicine Devices & Oxygen Monitors",
+      title: "HealthTech & Medical AI Hub",
+      subtitle: "Remote Telemedicine Devices, Diagnostic AI & Oxygen Flow Monitors",
       icon: Stethoscope,
       color: "bg-[#fef2f2] text-[#991b1b] border-[#fca5a5]",
-      tag: "1,520+ STARTUPS"
+      tag: "1,520+ STARTUPS",
+      metrics: "₹538 Cr Authorized Orders"
     }
   ];
 
   return (
-    <div className="min-h-screen bg-[#f8fafc] text-slate-900 font-sans selection:bg-[#c85a32] selection:text-white">
+    <div className="min-h-screen bg-[var(--bg-page)] text-slate-900 font-sans selection:bg-[var(--brand-accent)] selection:text-white transition-colors duration-300">
       
       {/* 1. Global Navigation Bar */}
       <Navbar />
 
-      {/* 2. GeM Inspired Announcement Banner Ticker */}
-      <div className="bg-[#1b3b30] text-white py-2 px-4 text-xs font-semibold shadow-inner border-b border-emerald-950">
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+      {/* 2. Announcement Ticker Banner */}
+      <div className="bg-[#FFD93D] text-black py-2.5 px-4 text-xs font-black uppercase border-b-4 border-black">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4 font-mono">
           <div className="flex items-center gap-2 shrink-0">
-            <span className="bg-[#c85a32] text-white px-2 py-0.5 rounded text-[10px] uppercase font-bold tracking-wider">
+            <span className="bg-[#FF6B6B] text-black px-2.5 py-0.5 border-2 border-black text-[10px] font-black uppercase tracking-wider shadow-[2px_2px_0px_0px_#000]">
               FLASH ANNOUNCEMENT
             </span>
-            <span className="hidden sm:inline font-mono text-emerald-200">SIH 2026</span>
+            <span className="hidden sm:inline font-bold">SIH 2026 OFFICIAL</span>
           </div>
 
-          <div className="truncate text-center text-[11px] font-medium tracking-wide">
-            🏆 SANKALP Innovation Runway: Over <span className="font-bold text-amber-300">₹2,028+ Cr</span> in direct public procurement scale-up orders authorized!
+          <div className="truncate text-center text-xs font-black tracking-wide">
+            🏆 SANKALP Scale-Up Runway: Over <span className="bg-[#FF6B6B] text-black px-1 border border-black font-black">₹2,028+ Cr</span> in direct public procurement contracts authorized!
           </div>
 
-          <Link href="/challenges" className="shrink-0 text-[11px] underline hover:text-amber-200 font-bold flex items-center gap-1">
-            Browse Live Challenges ➔
+          <Link href="/challenges" className="shrink-0 text-xs underline font-black flex items-center gap-1 hover:text-[#FF6B6B]">
+            Browse Challenges ➔
           </Link>
         </div>
       </div>
 
-      {/* 3. Hero Section (Sober & Natural Enterprise Government Theme) */}
-      <section className="relative bg-[#ffffff] text-slate-900 py-16 sm:py-20 px-4 sm:px-6 lg:px-8 border-b border-slate-200">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      {/* 3. HERO SECTION (Neo-Brutalist Pop Canvas) */}
+      <section className="relative bg-[#FFFDF5] text-black py-16 sm:py-24 px-4 sm:px-6 lg:px-8 border-b-4 border-black overflow-hidden bg-halftone">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
           
           {/* Hero Left Content */}
           <div className="lg:col-span-7 space-y-6 text-left">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1b3b30]/10 border border-[#1b3b30]/20 text-[#1b3b30] text-xs font-bold tracking-wide">
-              <Sparkles className="w-4 h-4 text-[#c85a32]" />
-              <span>NATIONAL PUBLIC SECTOR INNOVATION MARKETPLACE</span>
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 border-3 border-black bg-[#C4B5FD] text-black text-xs font-black uppercase tracking-wider -rotate-1 shadow-[3px_3px_0px_0px_#000]">
+              <Sparkles className="w-4 h-4 stroke-[3px]" />
+              <span>INDIA'S PREMIER PUBLIC SECTOR INNOVATION MARKETPLACE</span>
             </div>
 
-            <h1 className="text-3xl sm:text-5xl font-bold font-serif leading-tight text-slate-900 tracking-tight">
-              Bridging Public Sector Challenges with <span className="text-[#c85a32]">Startup Innovation</span> & Scale-Up Procurement
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black font-display leading-[0.95] text-black uppercase tracking-tighter">
+              Connecting <span className="inline-block bg-[#FFD93D] text-black px-2 border-3 border-black shadow-[4px_4px_0px_0px_#000] -rotate-1">Startup Tech</span> with Public Sector Scale-Up Contracts
             </h1>
 
-            <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-2xl font-normal">
-              SANKALP empowers Indian government departments to define real-world operational challenge statements, structure them with Gemini AI, verify startup eligibility, conduct cryptographic panel evaluations, deploy pilot projects, and authorize direct scale-up orders.
+            <p className="text-black/90 text-base sm:text-lg leading-relaxed max-w-2xl font-bold">
+              SANKALP empowers Indian government departments to post operational challenges, structure them with Gemini AI, verify DPIIT startup credentials, conduct blind cryptographic evaluations, deploy pilot projects, and issue direct scale-up orders.
             </p>
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap items-center gap-4 pt-2">
               <Link
                 href="/challenges"
-                className="px-6 py-3.5 bg-[#c85a32] hover:bg-[#b34d28] text-white text-sm font-bold rounded-xl shadow-md transition-all flex items-center gap-2"
+                className="gov-btn-primary text-base"
               >
                 <span>Browse Live Challenges</span>
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-5 h-5 stroke-[3px]" />
               </Link>
               <Link
                 href="/register"
-                className="px-6 py-3.5 bg-[#ffffff] hover:bg-slate-50 text-slate-800 border border-slate-300 text-sm font-semibold rounded-xl transition-all flex items-center gap-2"
+                className="gov-btn-secondary text-base"
               >
-                <Building2 className="w-4 h-4 text-[#1b3b30]" />
+                <Building2 className="w-5 h-5 stroke-[3px]" />
                 <span>Register Startup Profile</span>
               </Link>
             </div>
 
-            {/* Trust Badges */}
-            <div className="pt-6 border-t border-slate-200 grid grid-cols-3 gap-4 text-center sm:text-left text-xs font-medium text-slate-600">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#1b3b30] shrink-0" />
-                <span>DPIIT Credential Checks</span>
+            {/* Trust Features Stickers */}
+            <div className="pt-6 border-t-4 border-black grid grid-cols-3 gap-3 text-left text-xs font-black uppercase text-black">
+              <div className="flex items-center gap-1.5 bg-white border-2 border-black p-2 shadow-[2px_2px_0px_0px_#000]">
+                <CheckCircle2 className="w-4 h-4 text-[#FF6B6B] stroke-[3px] shrink-0" />
+                <span>DPIIT Check</span>
               </div>
-              <div className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-[#1b3b30] shrink-0" />
-                <span>Maker-Checker Governance</span>
+              <div className="flex items-center gap-1.5 bg-white border-2 border-black p-2 shadow-[2px_2px_0px_0px_#000]">
+                <ShieldCheck className="w-4 h-4 text-[#FF6B6B] stroke-[3px] shrink-0" />
+                <span>Maker-Checker</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Lock className="w-4 h-4 text-[#1b3b30] shrink-0" />
-                <span>SHA-256 Hash Chain</span>
+              <div className="flex items-center gap-1.5 bg-white border-2 border-black p-2 shadow-[2px_2px_0px_0px_#000]">
+                <Lock className="w-4 h-4 text-[#FF6B6B] stroke-[3px] shrink-0" />
+                <span>SHA-256 Hash</span>
               </div>
             </div>
           </div>
 
-          {/* Hero Right Enterprise Telemetry Card */}
+          {/* Hero Right Real-Time Telemetry Card */}
           <div className="lg:col-span-5">
-            <div className="bg-[#ffffff] border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-xl space-y-6">
-              <div className="flex items-center justify-between border-b border-slate-100 pb-4">
+            <div className="bg-white text-black border-4 border-black p-6 sm:p-8 shadow-[12px_12px_0px_0px_#000] space-y-6">
+              <div className="flex items-center justify-between border-b-4 border-black pb-4">
                 <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-emerald-600"></div>
-                  <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">PLATFORM TELEMETRY</span>
+                  <div className="w-3.5 h-3.5 bg-[#FF6B6B] border-2 border-black animate-pulse"></div>
+                  <span className="text-xs font-black text-black uppercase tracking-wider font-mono">LIVE PLATFORM TELEMETRY</span>
                 </div>
-                <span className="text-[10px] font-mono bg-slate-100 px-2.5 py-1 rounded text-slate-700 font-bold border border-slate-200">
+                <span className="text-[10px] font-black font-mono bg-[#FFD93D] text-black px-2.5 py-1 border-2 border-black uppercase shadow-[2px_2px_0px_0px_#000]">
                   REAL-TIME API
                 </span>
               </div>
 
               {/* Metrics Showcase */}
               <div className="space-y-4">
-                <div className="p-4 rounded-2xl bg-[#f8fafc] border border-slate-200 flex items-center justify-between">
+                <div className="p-5 bg-[#FFD93D] border-4 border-black shadow-[4px_4px_0px_0px_#000] flex items-center justify-between">
                   <div>
-                    <span className="block text-[11px] font-bold text-slate-500 uppercase">Authorized Scale-Up Orders</span>
-                    <span className="text-2xl font-bold text-[#1b3b30] font-mono">₹2,028,568,400</span>
+                    <span className="block text-[10px] font-black text-black uppercase tracking-wider">Total Scale-Up Procurement Orders</span>
+                    <span className="text-2xl sm:text-3xl font-black text-black font-mono">₹2,028,568,400</span>
                   </div>
-                  <TrendingUp className="w-8 h-8 text-[#c85a32]" />
+                  <TrendingUp className="w-9 h-9 text-black stroke-[3px]" />
                 </div>
 
                 <div className="grid grid-cols-2 gap-3">
-                  <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
-                    <span className="block text-[10px] font-bold text-slate-500 uppercase">Active Pilots</span>
-                    <span className="text-lg font-bold text-slate-900 font-mono">349 Projects</span>
+                  <div className="p-4 bg-[#C4B5FD] border-3 border-black shadow-[3px_3px_0px_0px_#000]">
+                    <span className="block text-[10px] font-black text-black uppercase">Active Pilot Projects</span>
+                    <span className="text-lg font-black text-black font-mono">349 Projects</span>
                   </div>
-                  <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
-                    <span className="block text-[10px] font-bold text-slate-500 uppercase">DPIIT Startups</span>
-                    <span className="text-lg font-bold text-slate-900 font-mono">10,676 Registered</span>
+                  <div className="p-4 bg-[#86EFAC] border-3 border-black shadow-[3px_3px_0px_0px_#000]">
+                    <span className="block text-[10px] font-black text-black uppercase">DPIIT Startups</span>
+                    <span className="text-lg font-black text-black font-mono">10,676 Entities</span>
                   </div>
                 </div>
               </div>
 
-              <div className="p-4 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs space-y-1.5">
-                <p className="font-bold flex items-center gap-1.5">
-                  <Award className="w-4 h-4 text-[#c85a32]" />
-                  Direct Commercial Scale-Up Authorization
+              <div className="p-4 bg-white border-3 border-black shadow-[3px_3px_0px_0px_#000] text-black text-xs space-y-1.5">
+                <p className="font-black uppercase flex items-center gap-1.5">
+                  <Award className="w-4 h-4 stroke-[3px]" />
+                  Direct Scale-Up Contract Authorization
                 </p>
-                <p className="text-[11px] text-amber-800 leading-relaxed font-normal">
-                  Completed pilots meeting KPI progress targets automatically generate Executive Decision Briefs for statewide scaling.
+                <p className="text-xs text-black font-bold leading-relaxed">
+                  Pilots reaching KPI performance benchmarks automatically trigger Executive Decision Briefs for commercial scale-up contracts.
                 </p>
               </div>
 
               <Link
                 href="/login"
-                className="w-full py-3 bg-[#1b3b30] hover:bg-[#142d25] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all block text-center shadow-md"
+                className="w-full py-3.5 bg-black text-white text-xs font-black uppercase tracking-wider border-3 border-black shadow-[4px_4px_0px_0px_#FFD93D] block text-center hover:bg-[#FF6B6B] hover:text-black transition-all"
               >
                 Sign In to Department / Startup Portal ➔
               </Link>
@@ -245,166 +250,170 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. GeM Inspired "Why Choose SANKALP" Stat Banner */}
-      <section className="bg-[#1b3b30] text-white py-12 px-4 sm:px-6 lg:px-8 shadow-md">
+      {/* 4. IMPACT STAT COUNTER BANNER */}
+      <section className="bg-[#FFD93D] text-black py-12 px-4 sm:px-6 lg:px-8 border-b-4 border-black">
         <div className="max-w-7xl mx-auto space-y-8">
           <div className="text-center space-y-2">
-            <h2 className="text-2xl sm:text-3xl font-bold font-serif">Why Departments Choose SANKALP</h2>
-            <p className="text-xs sm:text-sm text-emerald-200/80 font-normal">India's most transparent, audit-ready, and secure public innovation procurement platform</p>
+            <h2 className="text-3xl sm:text-4xl font-black font-display uppercase tracking-tight text-black">SANKALP Innovation Impact</h2>
+            <p className="text-sm font-bold text-black uppercase">India's most transparent, audit-ready, and efficient public procurement ecosystem</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-[#142d25] p-6 rounded-2xl border border-emerald-800 text-center space-y-2">
-              <span className="text-3xl sm:text-4xl font-bold font-mono text-amber-300">10,676</span>
-              <span className="block text-xs font-bold uppercase tracking-wider text-emerald-100">Innovation Categories</span>
-              <p className="text-[11px] text-emerald-300/80 font-normal">AgriTech, Smart Cities, Health, Defence & Clean Energy</p>
+            <div className="bg-white p-6 border-4 border-black shadow-[6px_6px_0px_0px_#000] text-center space-y-2">
+              <span className="text-4xl font-black font-mono text-black bg-[#FF6B6B] px-2 border-2 border-black inline-block">10,676+</span>
+              <span className="block text-xs font-black uppercase tracking-wider text-black">DPIIT Startups</span>
+              <p className="text-xs text-black font-bold">Registered across AgriTech, Mobility, CleanTech & Health</p>
             </div>
 
-            <div className="bg-[#142d25] p-6 rounded-2xl border border-emerald-800 text-center space-y-2">
-              <span className="text-3xl sm:text-4xl font-bold font-mono text-amber-300">₹2,028+ Cr</span>
-              <span className="block text-xs font-bold uppercase tracking-wider text-emerald-100">Scale-Up Order Value</span>
-              <p className="text-[11px] text-emerald-300/80 font-normal">Authorized across state and central ministry pilot projects</p>
+            <div className="bg-white p-6 border-4 border-black shadow-[6px_6px_0px_0px_#000] text-center space-y-2">
+              <span className="text-4xl font-black font-mono text-black bg-[#86EFAC] px-2 border-2 border-black inline-block">₹2,028+ Cr</span>
+              <span className="block text-xs font-black uppercase tracking-wider text-black">Scale-Up Order Value</span>
+              <p className="text-xs text-black font-bold">Authorized across central ministries & state departments</p>
             </div>
 
-            <div className="bg-[#142d25] p-6 rounded-2xl border border-emerald-800 text-center space-y-2">
-              <span className="text-3xl sm:text-4xl font-bold font-mono text-amber-300">349</span>
-              <span className="block text-xs font-bold uppercase tracking-wider text-emerald-100">Active Pilot Deployments</span>
-              <p className="text-[11px] text-emerald-300/80 font-normal">Real-time milestone tracking and verification</p>
+            <div className="bg-white p-6 border-4 border-black shadow-[6px_6px_0px_0px_#000] text-center space-y-2">
+              <span className="text-4xl font-black font-mono text-black bg-[#C4B5FD] px-2 border-2 border-black inline-block">349</span>
+              <span className="block text-xs font-black uppercase tracking-wider text-black">Active Pilot Projects</span>
+              <p className="text-xs text-black font-bold">Monitored via real-time milestone evidence & KPI logging</p>
             </div>
 
-            <div className="bg-[#142d25] p-6 rounded-2xl border border-emerald-800 text-center space-y-2">
-              <span className="text-3xl sm:text-4xl font-bold font-mono text-amber-300">100%</span>
-              <span className="block text-xs font-bold uppercase tracking-wider text-emerald-100">Cryptographic Integrity</span>
-              <p className="text-[11px] text-emerald-300/80 font-normal">SHA-256 evaluation score hash chains & Maker-Checker checks</p>
+            <div className="bg-white p-6 border-4 border-black shadow-[6px_6px_0px_0px_#000] text-center space-y-2">
+              <span className="text-4xl font-black font-mono text-black bg-[#FF6B6B] px-2 border-2 border-black inline-block">100%</span>
+              <span className="block text-xs font-black uppercase tracking-wider text-black">Audit Hash Integrity</span>
+              <p className="text-xs text-black font-bold">SHA-256 evaluation score hash chain & dual-authorization checks</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 5. Clean, Sober, Natural Domain Showcase Section */}
-      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-8">
-        <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 border-b border-slate-200 pb-4">
-          <div>
-            <div className="inline-flex items-center gap-1.5 text-xs font-bold text-[#c85a32] uppercase tracking-wider mb-1">
-              <Layers className="w-4 h-4" />
-              <span>KEY INNOVATION SECTORS</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 font-serif">
-              Popular Public Sector Domains
-            </h2>
+      {/* 5. 4 PILLARS OF PUBLIC SECTOR INNOVATION */}
+      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-12">
+        <div className="text-center max-w-3xl mx-auto space-y-3">
+          <div className="inline-block border-3 border-black bg-[#C4B5FD] text-black px-3 py-1 font-black text-xs uppercase tracking-widest -rotate-2 shadow-[3px_3px_0px_0px_#000]">
+            THE 4 PILLARS OF ECOSYSTEM SCALE-UP
           </div>
-          <Link href="/challenges" className="text-xs font-bold text-[#c85a32] hover:underline flex items-center gap-1">
-            Browse All Challenges ➔
-          </Link>
+          <h2 className="text-3xl sm:text-5xl font-black font-display text-black uppercase tracking-tight">
+            Closing the Lifecycle from Challenge to Scale-Up
+          </h2>
+          <p className="text-sm sm:text-base text-black font-bold leading-relaxed">
+            Designed to eliminate bureaucratic friction and accelerate commercial technology adoption in government.
+          </p>
         </div>
 
-        {/* Clean Natural Domain Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {domainCategories.map((domain, idx) => {
-            const IconComp = domain.icon;
-            return (
-              <div
-                key={idx}
-                className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between space-y-6"
-              >
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center border ${domain.color}`}>
-                      <IconComp className="w-6 h-6" />
-                    </div>
-                    <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-200">
-                      {domain.tag}
-                    </span>
-                  </div>
-
-                  <div>
-                    <h3 className="font-bold text-slate-900 text-base">
-                      {domain.title}
-                    </h3>
-                    <p className="text-xs text-slate-600 mt-1 leading-relaxed font-normal">
-                      {domain.subtitle}
-                    </p>
-                  </div>
-                </div>
-
-                <Link
-                  href="/challenges"
-                  className="w-full py-2.5 bg-slate-100 hover:bg-[#1b3b30] hover:text-white text-slate-800 text-xs font-semibold rounded-xl transition-all text-center block"
-                >
-                  Explore Domain
-                </Link>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* 6. T-Hub Inspired Innovation Pillars Section */}
-      <section className="bg-[#f1f5f9] text-slate-900 py-16 sm:py-20 px-4 sm:px-6 lg:px-8 border-y border-slate-200">
-        <div className="max-w-7xl mx-auto space-y-12">
-          <div className="text-center max-w-3xl mx-auto space-y-3">
-            <span className="text-xs font-bold text-[#c85a32] uppercase tracking-widest">
-              END-TO-END INNOVATION LIFECYCLE
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-bold font-serif text-slate-900">
-              The 4 Pillars of Government Procurement Scale-Up
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-              Structured to close the lifecycle from problem identification to commercial adoption.
+          <div className="bg-white p-6 border-4 border-black shadow-[8px_8px_0px_0px_#000] hover:-translate-y-1.5 hover:shadow-[12px_12px_0px_0px_#000] transition-all space-y-4">
+            <div className="w-12 h-12 bg-[#FF6B6B] border-3 border-black flex items-center justify-center font-black text-xl font-mono text-black shadow-[3px_3px_0px_0px_#000]">
+              01
+            </div>
+            <h3 className="font-black text-lg uppercase text-black">AI Challenge Structuring</h3>
+            <p className="text-xs text-black font-bold leading-relaxed">
+              Department officers post raw operational problem statements. Gemini AI structures measurable outcomes, scope constraints, and target KPIs.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-white p-6 rounded-2xl border border-slate-200 space-y-3 shadow-sm">
-              <div className="w-10 h-10 rounded-xl bg-[#1b3b30] text-white flex items-center justify-center font-bold text-sm">
-                01
-              </div>
-              <h3 className="font-bold text-base text-slate-900">AI Challenge Structuring</h3>
-              <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                Department officers post raw problem statements. Gemini AI structures measurable outcomes, scope, constraints, and target KPIs.
-              </p>
+          <div className="bg-white p-6 border-4 border-black shadow-[8px_8px_0px_0px_#000] hover:-translate-y-1.5 hover:shadow-[12px_12px_0px_0px_#000] transition-all space-y-4">
+            <div className="w-12 h-12 bg-[#FFD93D] border-3 border-black flex items-center justify-center font-black text-xl font-mono text-black shadow-[3px_3px_0px_0px_#000]">
+              02
             </div>
+            <h3 className="font-black text-lg uppercase text-black">Automated Screening</h3>
+            <p className="text-xs text-black font-bold leading-relaxed">
+              Startup proposals undergo instant rule verification against turnover and DPIIT credentials, with documented waiver workflows.
+            </p>
+          </div>
 
-            <div className="bg-white p-6 rounded-2xl border border-slate-200 space-y-3 shadow-sm">
-              <div className="w-10 h-10 rounded-xl bg-[#1b3b30] text-white flex items-center justify-center font-bold text-sm">
-                02
-              </div>
-              <h3 className="font-bold text-base text-slate-900">Automated Screening</h3>
-              <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                Startup proposals undergo instant rule verification against turnover and DPIIT credentials, with documented waiver workflows.
-              </p>
+          <div className="bg-white p-6 border-4 border-black shadow-[8px_8px_0px_0px_#000] hover:-translate-y-1.5 hover:shadow-[12px_12px_0px_0px_#000] transition-all space-y-4">
+            <div className="w-12 h-12 bg-[#C4B5FD] border-3 border-black flex items-center justify-center font-black text-xl font-mono text-black shadow-[3px_3px_0px_0px_#000]">
+              03
             </div>
+            <h3 className="font-black text-lg uppercase text-black">Cryptographic Panel Scoring</h3>
+            <p className="text-xs text-black font-bold leading-relaxed">
+              Blind evaluator scoring generates SHA-256 hash chains to guarantee tamper-proof ranking and selection for pilot trials.
+            </p>
+          </div>
 
-            <div className="bg-white p-6 rounded-2xl border border-slate-200 space-y-3 shadow-sm">
-              <div className="w-10 h-10 rounded-xl bg-[#1b3b30] text-white flex items-center justify-center font-bold text-sm">
-                03
-              </div>
-              <h3 className="font-bold text-base text-slate-900">Cryptographic Panel Scoring</h3>
-              <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                Blind evaluator scoring generates SHA-256 hash chains to guarantee tamper-proof ranking and selection for pilot trials.
-              </p>
+          <div className="bg-white p-6 border-4 border-black shadow-[8px_8px_0px_0px_#000] hover:-translate-y-1.5 hover:shadow-[12px_12px_0px_0px_#000] transition-all space-y-4">
+            <div className="w-12 h-12 bg-[#86EFAC] border-3 border-black flex items-center justify-center font-black text-xl font-mono text-black shadow-[3px_3px_0px_0px_#000]">
+              04
             </div>
-
-            <div className="bg-white p-6 rounded-2xl border border-slate-200 space-y-3 shadow-sm">
-              <div className="w-10 h-10 rounded-xl bg-[#1b3b30] text-white flex items-center justify-center font-bold text-sm">
-                04
-              </div>
-              <h3 className="font-bold text-base text-slate-900">Maker-Checker Scale-Up</h3>
-              <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                Completed pilots with verified KPI progress trigger Executive Briefs and dual-authorized commercial scale-up contracts.
-              </p>
-            </div>
+            <h3 className="font-black text-lg uppercase text-black">Maker-Checker Scale-Up</h3>
+            <p className="text-xs text-black font-bold leading-relaxed">
+              Completed pilots with verified KPI progress trigger Executive Briefs and dual-authorized commercial scale-up contracts.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* 7. Maharashtra Startup Week Inspired Accordion FAQ Section */}
+      {/* 6. SECTOR HUBS SHOWCASE */}
+      <section className="bg-slate-100/70 py-16 sm:py-20 px-4 sm:px-6 lg:px-8 border-y border-slate-200">
+        <div className="max-w-7xl mx-auto space-y-8">
+          <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 border-b border-slate-300 pb-4">
+            <div>
+              <div className="inline-flex items-center gap-1.5 text-xs font-bold theme-accent-text uppercase tracking-wider mb-1 font-mono">
+                <Layers className="w-4 h-4" />
+                <span>PUBLIC SECTOR INNOVATION HUBS</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 font-serif">
+                Featured Innovation Domains
+              </h2>
+            </div>
+            <Link href="/challenges" className="text-xs font-bold theme-accent-text hover:underline flex items-center gap-1">
+              Explore All Sector Challenges ➔
+            </Link>
+          </div>
+
+          {/* Clean Domain Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {domainCategories.map((domain, idx) => {
+              const IconComp = domain.icon;
+              return (
+                <div
+                  key={idx}
+                  className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between space-y-6"
+                >
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <div className={`w-12 h-12 rounded-xl flex items-center justify-center border ${domain.color}`}>
+                        <IconComp className="w-6 h-6" />
+                      </div>
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200 font-mono">
+                        {domain.tag}
+                      </span>
+                    </div>
+
+                    <div>
+                      <h3 className="font-bold text-slate-900 text-base">
+                        {domain.title}
+                      </h3>
+                      <p className="text-xs text-slate-600 mt-1 leading-relaxed font-normal">
+                        {domain.subtitle}
+                      </p>
+                    </div>
+
+                    <div className="pt-2 border-t border-slate-100 text-[11px] font-mono theme-accent-text font-bold">
+                      {domain.metrics}
+                    </div>
+                  </div>
+
+                  <Link
+                    href="/challenges"
+                    className="w-full py-2.5 bg-slate-100 hover:theme-header hover:text-white text-slate-800 text-xs font-semibold rounded-xl transition-all text-center block"
+                  >
+                    Explore Domain
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* 7. MAHARASHTRA STARTUP WEEK FAQ ACCORDION */}
       <section id="faqs" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto space-y-8">
         
         {/* Main Heading & Short Disclaimer Note */}
         <div className="text-center space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-[#1b3b30] text-xs font-bold">
-            <HelpCircle className="w-4 h-4" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-800 text-xs font-bold">
+            <HelpCircle className="w-4 h-4 theme-accent-text" />
             <span>KNOWLEDGE BASE & GUIDANCE</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 font-serif">
@@ -424,7 +433,7 @@ export default function HomePage() {
                 key={idx}
                 className={`rounded-2xl border transition-all overflow-hidden ${
                   isOpen 
-                    ? "bg-white border-[#1b3b30] shadow-sm" 
+                    ? "bg-white theme-accent-border shadow-sm" 
                     : "bg-white border-slate-200 hover:border-slate-300"
                 }`}
               >
@@ -436,7 +445,7 @@ export default function HomePage() {
                 >
                   <span className="flex items-center gap-3">
                     <span className={`w-7 h-7 rounded-full flex items-center justify-center text-xs shrink-0 font-mono font-bold ${
-                      isOpen ? "bg-[#1b3b30] text-white" : "bg-slate-100 text-slate-700"
+                      isOpen ? "theme-header text-white" : "bg-slate-100 text-slate-700"
                     }`}>
                       0{idx + 1}
                     </span>
@@ -445,7 +454,7 @@ export default function HomePage() {
 
                   {/* Expand / Collapse Icon */}
                   <div className={`p-1.5 rounded-lg shrink-0 transition-transform ${
-                    isOpen ? "bg-[#1b3b30] text-white" : "bg-slate-100 text-slate-600"
+                    isOpen ? "theme-header text-white" : "bg-slate-100 text-slate-600"
                   }`}>
                     {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
                   </div>
@@ -463,32 +472,32 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 8. GeM Inspired Floating AI Chatbot Assistant Widget ("Ask SANKALP AI") */}
+      {/* 8. FLOATING AI CHATBOT WIDGET ("Ask SANKALP AI") */}
       <div className="fixed bottom-6 left-6 z-50">
         {!aiWidgetOpen ? (
           <button
             type="button"
             onClick={() => setAiWidgetOpen(true)}
-            className="flex items-center gap-2.5 px-4 py-3 bg-[#1b3b30] hover:bg-[#142d25] text-white rounded-full shadow-lg hover:scale-105 transition-all font-bold text-xs border border-emerald-800"
+            className="flex items-center gap-2.5 px-4 py-3 theme-header text-white rounded-full shadow-xl hover:scale-105 transition-all font-bold text-xs border border-white/20"
           >
-            <Bot className="w-5 h-5 text-amber-300" />
+            <Bot className="w-5 h-5 theme-highlight-text" />
             <span>Ask SANKALP AI (Powered by Gemini)</span>
           </button>
         ) : (
           <div className="w-80 sm:w-96 bg-white border border-slate-300 rounded-3xl shadow-2xl text-slate-900 overflow-hidden flex flex-col h-[420px] animate-in slide-in-from-bottom duration-200">
             {/* Widget Header */}
-            <div className="bg-[#1b3b30] p-4 text-white flex items-center justify-between">
+            <div className="theme-header p-4 text-white flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <Bot className="w-5 h-5 text-amber-300" />
+                <Bot className="w-5 h-5 theme-highlight-text" />
                 <div>
                   <span className="font-bold text-xs text-white block">Ask SANKALP AI</span>
-                  <span className="text-[9px] text-emerald-200 font-medium">Powered by Gemini 3.6 Flash</span>
+                  <span className="text-[9px] text-slate-200 font-medium">Powered by Gemini 3.6 Flash</span>
                 </div>
               </div>
               <button
                 type="button"
                 onClick={() => setAiWidgetOpen(false)}
-                className="p-1 rounded-lg bg-[#142d25] text-emerald-200 hover:text-white"
+                className="p-1 rounded-lg bg-black/20 text-slate-200 hover:text-white"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -501,7 +510,7 @@ export default function HomePage() {
                   key={i}
                   className={`p-3 rounded-2xl leading-relaxed ${
                     msg.sender === "user"
-                      ? "bg-[#c85a32] text-white ml-6 text-right font-medium"
+                      ? "theme-accent-bg text-white ml-6 text-right font-medium"
                       : "bg-white text-slate-800 mr-6 border border-slate-200 shadow-sm font-normal"
                   }`}
                 >
@@ -517,9 +526,9 @@ export default function HomePage() {
                 value={userQuery}
                 onChange={(e) => setUserQuery(e.target.value)}
                 placeholder="Ask about challenges, eligibility..."
-                className="flex-1 bg-slate-100 text-slate-900 text-xs rounded-xl px-3 py-2 border border-slate-300 focus:outline-none focus:ring-1 focus:ring-[#1b3b30]"
+                className="flex-1 bg-slate-100 text-slate-900 text-xs rounded-xl px-3 py-2 border border-slate-300 focus:outline-none focus:ring-1 focus:ring-[var(--brand-header)]"
               />
-              <button type="submit" className="p-2 bg-[#1b3b30] hover:bg-[#142d25] text-white rounded-xl">
+              <button type="submit" className="p-2 theme-header text-white rounded-xl">
                 <ArrowRight className="w-4 h-4" />
               </button>
             </form>
@@ -528,21 +537,21 @@ export default function HomePage() {
       </div>
 
       {/* 9. Footer */}
-      <footer className="bg-[#142d25] text-emerald-200 text-xs border-t border-emerald-950 py-12 px-4 sm:px-6 lg:px-8">
+      <footer className="theme-footer text-slate-200 text-xs border-t border-black/20 py-12 px-4 sm:px-6 lg:px-8 transition-colors duration-300">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-3">
             <div className="flex items-center gap-2">
-              <Building2 className="w-5 h-5 text-amber-300" />
+              <Building2 className="w-5 h-5 theme-highlight-text" />
               <span className="font-bold text-white text-lg font-serif">SANKALP</span>
             </div>
-            <p className="text-emerald-300/80 text-[11px] leading-relaxed font-normal">
-              Smart Innovation Procurement Platform for Indian Public Sector & Startups. Built for Smart India Hackathon 2026.
+            <p className="text-slate-300 text-[11px] leading-relaxed font-normal">
+              Smart Innovation Procurement Platform for Indian Public Sector & Startups. Built for Smart India Hackathon 2026. Inspired by T-Hub & GeM.
             </p>
           </div>
 
           <div>
             <h4 className="font-bold text-white uppercase text-[11px] mb-3">Quick Navigation</h4>
-            <ul className="space-y-2 text-[11px] text-emerald-200">
+            <ul className="space-y-2 text-[11px] text-slate-200">
               <li><Link href="/" className="hover:text-white">Home</Link></li>
               <li><Link href="/challenges" className="hover:text-white">Public Challenges</Link></li>
               <li><Link href="/register" className="hover:text-white">Register Startup</Link></li>
@@ -552,7 +561,7 @@ export default function HomePage() {
 
           <div>
             <h4 className="font-bold text-white uppercase text-[11px] mb-3">Governance & Trust</h4>
-            <ul className="space-y-2 text-[11px] text-emerald-200">
+            <ul className="space-y-2 text-[11px] text-slate-200">
               <li>DPIIT Startup Credentials</li>
               <li>Automated Eligibility Engine</li>
               <li>SHA-256 Score Hash Chain</li>
@@ -562,14 +571,14 @@ export default function HomePage() {
 
           <div>
             <h4 className="font-bold text-white uppercase text-[11px] mb-3">Support & Helpdesk</h4>
-            <p className="text-[11px] text-emerald-200 leading-relaxed mb-2 font-normal">
+            <p className="text-[11px] text-slate-200 leading-relaxed mb-2 font-normal">
               Need assistance posting a challenge or submitting a pilot proposal?
             </p>
-            <span className="font-mono text-amber-300 font-bold block">support@sankalp2026.gov.in</span>
+            <span className="font-mono theme-highlight-text font-bold block">support@sankalp2026.gov.in</span>
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto pt-8 mt-8 border-t border-emerald-900 text-center text-[10px] text-emerald-400">
+        <div className="max-w-7xl mx-auto pt-8 mt-8 border-t border-white/10 text-center text-[10px] text-slate-400">
           © 2026 SANKALP Government Innovation Procurement Platform. All rights reserved.
         </div>
       </footer>

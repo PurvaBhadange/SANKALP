@@ -193,8 +193,8 @@ function MotionNavigationMenu({
 
       if (typeof ref === "function") {
         ref(node);
-      } else if (ref) {
-        ref.current = node;
+      } else if (ref && "current" in ref) {
+        (ref as React.MutableRefObject<HTMLElement | null>).current = node;
       }
     },
     [ref],

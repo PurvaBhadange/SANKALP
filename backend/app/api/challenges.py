@@ -607,8 +607,8 @@ def list_challenges(
 @router.get("/sectors", response_model=List[SectorResponse])
 def list_sectors(
     db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_user)
 ):
+    """Public endpoint — needed by startup registration page without authentication."""
     return db.query(Sector).order_by(Sector.name.asc()).all()
 
 @router.get("/{id}", response_model=ChallengeResponse)

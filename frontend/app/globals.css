@@ -3,150 +3,273 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --bg-page: #f8fafc;
+  /* =========================================================
+     1. NEO-BRUTALIST (DEFAULT / 'thub')
+     ========================================================= */
+  :root, [data-theme="thub"], [data-theme="neobrutalism"] {
+    --bg-page: #FFFDF5;
     --bg-card: #ffffff;
-    --border-color: #e2e8f0;
-    --text-primary: #0f172a;
+    --border-color: #000000;
+    --border-width: 4px;
+    --text-primary: #000000;
+    --text-secondary: #1a1a1a;
+    
+    --brand-header: #000000;
+    --brand-header-text: #ffffff;
+    --brand-header-sub: #FFD93D;
+    
+    --brand-accent: #FF6B6B;
+    --brand-accent-hover: #ff5252;
+    --brand-accent-text: #000000;
+    
+    --brand-secondary: #FFD93D;
+    --brand-secondary-hover: #ffcc00;
+    --brand-secondary-text: #000000;
+    
+    --brand-highlight: #FFD93D;
+    --brand-highlight-text: #000000;
+    
+    --hero-bg: #FFFDF5;
+    --hero-text: #000000;
+    --banner-bg: #FFD93D;
+    --banner-text: #000000;
+    --counter-card-bg: #ffffff;
+    --counter-card-border: #000000;
+    --pillar-num-bg: #FF6B6B;
+    --pillar-num-text: #000000;
+    --footer-bg: #000000;
+    --footer-text: #ffffff;
+
+    --card-shadow: 8px 8px 0px 0px #000000;
+    --card-shadow-hover: 12px 12px 0px 0px #000000;
+    --btn-shadow: 6px 6px 0px 0px #000000;
+    --btn-shadow-hover: 8px 8px 0px 0px #000000;
+    --font-heading: 'Space Grotesk', sans-serif;
+    --font-body: 'Space Grotesk', sans-serif;
+    --halftone-opacity: 1;
+  }
+
+  /* =========================================================
+     2. GOVIZO (Navy & Crimson Royal Government Theme)
+     ========================================================= */
+  [data-theme="govizo"] {
+    --bg-page: #0B132B;
+    --bg-card: #1C2541;
+    --border-color: #3A506B;
+    --border-width: 1px;
+    --text-primary: #F8FAFC;
+    --text-secondary: #94A3B8;
+    
+    --brand-header: #0B132B;
+    --brand-header-text: #FFFFFF;
+    --brand-header-sub: #F59E0B;
+    
+    --brand-accent: #DC2626;
+    --brand-accent-hover: #B91C1C;
+    --brand-accent-text: #FFFFFF;
+    
+    --brand-secondary: #D97706;
+    --brand-secondary-hover: #B45309;
+    --brand-secondary-text: #FFFFFF;
+    
+    --brand-highlight: #F59E0B;
+    --brand-highlight-text: #0B132B;
+    
+    --hero-bg: #0B132B;
+    --hero-text: #FFFFFF;
+    --banner-bg: #1E293B;
+    --banner-text: #F8FAFC;
+    --counter-card-bg: #1C2541;
+    --counter-card-border: #3A506B;
+    --pillar-num-bg: #DC2626;
+    --pillar-num-text: #FFFFFF;
+    --footer-bg: #030712;
+    --footer-text: #94A3B8;
+
+    --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    --card-shadow-hover: 0 20px 30px -10px rgba(220, 38, 38, 0.3);
+    --btn-shadow: 0 4px 14px 0 rgba(220, 38, 38, 0.39);
+    --btn-shadow-hover: 0 6px 20px rgba(220, 38, 38, 0.5);
+    --font-heading: 'Space Grotesk', serif;
+    --font-body: 'Inter', sans-serif;
+    --halftone-opacity: 0;
+  }
+
+  /* =========================================================
+     3. ENTERPRISE (Slate Blue & Indigo Professional Theme)
+     ========================================================= */
+  [data-theme="light"] {
+    --bg-page: #F1F5F9;
+    --bg-card: #FFFFFF;
+    --border-color: #CBD5E1;
+    --border-width: 1px;
+    --text-primary: #0F172A;
     --text-secondary: #475569;
-    --text-muted: #64748b;
-    --brand-forest: #1b3b30;
-    --brand-forest-dark: #122c23;
-    --brand-terracotta: #c85a32;
-    --brand-terracotta-hover: #b34d28;
-    --accent-amber: #d97706;
+    
+    --brand-header: #1E293B;
+    --brand-header-text: #FFFFFF;
+    --brand-header-sub: #38BDF8;
+    
+    --brand-accent: #2563EB;
+    --brand-accent-hover: #1D4ED8;
+    --brand-accent-text: #FFFFFF;
+    
+    --brand-secondary: #4F46E5;
+    --brand-secondary-hover: #4338CA;
+    --brand-secondary-text: #FFFFFF;
+    
+    --brand-highlight: #38BDF8;
+    --brand-highlight-text: #0F172A;
+    
+    --hero-bg: #0F172A;
+    --hero-text: #FFFFFF;
+    --banner-bg: #1E293B;
+    --banner-text: #F8FAFC;
+    --counter-card-bg: #FFFFFF;
+    --counter-card-border: #E2E8F0;
+    --pillar-num-bg: #2563EB;
+    --pillar-num-text: #FFFFFF;
+    --footer-bg: #0F172A;
+    --footer-text: #94A3B8;
+
+    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --card-shadow-hover: 0 10px 15px -3px rgba(37, 99, 235, 0.2);
+    --btn-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.3);
+    --btn-shadow-hover: 0 6px 12px -2px rgba(37, 99, 235, 0.4);
+    --font-heading: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --halftone-opacity: 0;
   }
 
   body {
     color: var(--text-primary);
     background-color: var(--bg-page);
     min-height: 100vh;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: var(--font-body);
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 7px;
-  height: 7px;
+  width: 10px;
+  height: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: var(--bg-page);
+  border-left: 1px solid var(--border-color);
 }
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: var(--brand-accent);
+  border-radius: 0px;
 }
 
-/* Premium Enterprise & Government Card System */
+/* Halftone Pattern Background (Only visible in Neo-brutalist theme) */
+.bg-halftone {
+  background-image: radial-gradient(var(--border-color) 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+}
+
+/* Dynamic Theme Utility Classes */
+.theme-hero {
+  background-color: var(--hero-bg) !important;
+  color: var(--hero-text) !important;
+  border-color: var(--border-color) !important;
+}
+
+.theme-banner {
+  background-color: var(--banner-bg) !important;
+  color: var(--banner-text) !important;
+  border-color: var(--border-color) !important;
+}
+
+.theme-counter-card {
+  background-color: var(--counter-card-bg) !important;
+  color: var(--text-primary) !important;
+  border: var(--border-width) solid var(--border-color) !important;
+  box-shadow: var(--card-shadow) !important;
+}
+
+.theme-pillar-num {
+  background-color: var(--pillar-num-bg) !important;
+  color: var(--pillar-num-text) !important;
+  border: var(--border-width) solid var(--border-color) !important;
+}
+
+.theme-footer {
+  background-color: var(--footer-bg) !important;
+  color: var(--footer-text) !important;
+}
+
+.theme-header {
+  background-color: var(--brand-header) !important;
+  color: var(--brand-header-text) !important;
+}
+
+.theme-accent-bg {
+  background-color: var(--brand-accent) !important;
+  color: var(--brand-accent-text) !important;
+}
+
+.theme-accent-bg:hover {
+  background-color: var(--brand-accent-hover) !important;
+}
+
+.theme-accent-text {
+  color: var(--brand-accent) !important;
+}
+
+.theme-accent-border {
+  border-color: var(--brand-accent) !important;
+}
+
+.theme-highlight-text {
+  color: var(--brand-highlight-text) !important;
+  background-color: var(--brand-highlight);
+  padding: 0 4px;
+}
+
+/* Dynamic Card System */
 .gov-card {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 1rem;
-  box-shadow: 0 4px 12px -2px rgba(15, 23, 42, 0.05);
-  transition: all 0.2s ease-in-out;
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+  border: var(--border-width) solid var(--border-color);
+  box-shadow: var(--card-shadow);
+  transition: all 0.2s ease-out;
 }
 
 .gov-card-interactive {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 1rem;
-  box-shadow: 0 4px 12px -2px rgba(15, 23, 42, 0.05);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+  border: var(--border-width) solid var(--border-color);
+  box-shadow: var(--card-shadow);
+  transition: all 0.2s ease-out;
 }
 
 .gov-card-interactive:hover {
-  border-color: #cbd5e1;
-  box-shadow: 0 10px 25px -5px rgba(27, 59, 48, 0.08);
-  transform: translateY(-2px);
-}
-
-/* Signature AI Feature Card Styling */
-.ai-card {
-  background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%);
-  border: 1px solid #bbf7d0;
-  border-radius: 1rem;
-  box-shadow: 0 4px 14px -2px rgba(22, 101, 52, 0.06);
-}
-
-.ai-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  padding: 0.25rem 0.625rem;
-  border-radius: 9999px;
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  background: #dcfce7;
-  color: #15803d;
-  border: 1px solid #86efac;
-}
-
-/* Soft Faded Status Pill Tokens */
-.status-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  padding: 0.25rem 0.75rem;
-  border-radius: 9999px;
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  border-width: 1px;
-}
-
-.status-draft {
-  background-color: #f1f5f9;
-  color: #475569;
-  border-color: #cbd5e1;
-}
-
-.status-pending {
-  background-color: #fef3c7;
-  color: #b45309;
-  border-color: #fde68a;
-}
-
-.status-published, .status-active, .status-passed, .status-paid, .status-approved {
-  background-color: #dcfce7;
-  color: #15803d;
-  border-color: #bbf7d0;
-}
-
-.status-rejected, .status-failed, .status-terminated {
-  background-color: #fee2e2;
-  color: #b91c1c;
-  border-color: #fca5a5;
+  transform: translateY(-4px);
+  box-shadow: var(--card-shadow-hover);
 }
 
 /* Form Inputs & Buttons */
 .gov-input {
   width: 100%;
-  background-color: #ffffff;
-  border: 1px solid #cbd5e1;
-  border-radius: 0.75rem;
-  padding: 0.625rem 0.875rem;
-  font-size: 0.875rem;
-  color: #0f172a;
-  transition: all 0.15s ease-in-out;
+  background-color: var(--bg-card);
+  border: var(--border-width) solid var(--border-color);
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  transition: all 0.15s ease-out;
 }
 
 .gov-input:focus {
   outline: none;
-  border-color: #1b3b30;
-  box-shadow: 0 0 0 3px rgba(27, 59, 48, 0.15);
-}
-
-.gov-input::placeholder {
-  color: #94a3b8;
+  background-color: var(--brand-highlight);
+  color: var(--brand-highlight-text);
+  box-shadow: var(--card-shadow);
 }
 
 .gov-btn-primary {
@@ -154,19 +277,27 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background-color: #c85a32;
-  color: #ffffff;
-  font-size: 0.875rem;
-  font-weight: 700;
-  padding: 0.625rem 1.25rem;
-  border-radius: 0.75rem;
-  transition: all 0.15s ease-in-out;
-  box-shadow: 0 4px 12px 0 rgba(200, 90, 50, 0.25);
+  background-color: var(--brand-accent);
+  color: var(--brand-accent-text);
+  font-size: 0.9rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.75rem 1.5rem;
+  border: var(--border-width) solid var(--border-color);
+  box-shadow: var(--btn-shadow);
+  transition: all 0.15s ease-out;
 }
 
 .gov-btn-primary:hover {
-  background-color: #b34d28;
-  box-shadow: 0 6px 16px 0 rgba(200, 90, 50, 0.35);
+  background-color: var(--brand-accent-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--btn-shadow-hover);
+}
+
+.gov-btn-primary:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
 }
 
 .gov-btn-secondary {
@@ -174,17 +305,60 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background-color: #ffffff;
-  color: #1e293b;
-  font-size: 0.875rem;
-  font-weight: 600;
-  padding: 0.625rem 1.25rem;
-  border-radius: 0.75rem;
-  border: 1px solid #cbd5e1;
-  transition: all 0.15s ease-in-out;
+  background-color: var(--brand-secondary);
+  color: var(--brand-secondary-text);
+  font-size: 0.9rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.75rem 1.5rem;
+  border: var(--border-width) solid var(--border-color);
+  box-shadow: var(--btn-shadow);
+  transition: all 0.15s ease-out;
 }
 
 .gov-btn-secondary:hover {
-  background-color: #f8fafc;
-  border-color: #94a3b8;
+  background-color: var(--brand-secondary-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--btn-shadow-hover);
+}
+
+.gov-btn-secondary:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+/* Status Pills */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.75rem;
+  border: var(--border-width) solid var(--border-color);
+  font-size: 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 9999px;
+  box-shadow: var(--btn-shadow);
+}
+
+.status-draft {
+  background-color: #E2E8F0;
+  color: #000000;
+}
+
+.status-pending {
+  background-color: var(--brand-secondary);
+  color: var(--brand-secondary-text);
+}
+
+.status-published {
+  background-color: #86EFAC;
+  color: #000000;
+}
+
+.status-rejected {
+  background-color: var(--brand-accent);
+  color: var(--brand-accent-text);
 }
