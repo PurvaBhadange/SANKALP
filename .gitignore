@@ -25,6 +25,8 @@ credentials.json
 *.sqlite3
 app.db
 backend/app.db
+.neon
+
 
 # ------------------------------------------------------------------------------
 # Python & Virtual Environments
