@@ -514,31 +514,31 @@ export default function OfficerPilotWorkbenchPage() {
   const isFinalized = pilot?.contract_status === "finalized";
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 pb-16">
+    <div className="min-h-screen bg-[#FFFDF5] text-slate-900 pb-16 font-sans bg-halftone">
       <Navbar />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 space-y-6">
         {/* Header Title & Status Bar */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800 pb-6">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b-4 border-black pb-6">
           <div className="flex items-center gap-3">
             <Link
               href="/pilots"
-              className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-white"
+              className="p-2 rounded-xl bg-white border-2 border-black text-black hover:bg-[#FFD93D] shadow-[2px_2px_0px_0px_#000] transition-all"
             >
-              <ArrowLeft className="w-4 h-4" />
+              <ArrowLeft className="w-4 h-4 stroke-[3px]" />
             </Link>
             <div>
-              <h1 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
-                <Building2 className="w-5 h-5 text-indigo-400" /> Pilot Contract & Workbench
+              <h1 className="text-2xl font-black text-black tracking-tight font-display uppercase flex items-center gap-2">
+                <Building2 className="w-6 h-6 text-black stroke-[3px]" /> Pilot Contract & Workbench
               </h1>
-              <p className="text-xs text-slate-400 font-mono mt-0.5">
+              <p className="text-xs text-black font-bold font-mono mt-0.5 uppercase">
                 {pilot?.application?.startup?.name ? `Startup: ${pilot.application.startup.name}` : "Pilot Project"}
               </p>
             </div>
           </div>
 
           {pilot && (
-            <div className="flex items-center gap-2 flex-wrap">
+            <div className="flex items-center gap-2 flex-wrap font-mono font-black">
               <span className={`status-pill ${pilot.contract_status === "finalized" ? "status-published" : "status-pending"}`}>
                 Contract: {pilot.contract_status}
               </span>
@@ -552,9 +552,9 @@ export default function OfficerPilotWorkbenchPage() {
                   className="gov-btn-primary py-1.5 text-xs"
                 >
                   {actionLoading === "complete-pilot" ? (
-                    <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                    <Loader2 className="w-3.5 h-3.5 animate-spin stroke-[3px]" />
                   ) : (
-                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    <CheckCircle2 className="w-3.5 h-3.5 stroke-[3px]" />
                   )}
                   <span>Mark Completed</span>
                 </button>
@@ -563,49 +563,49 @@ export default function OfficerPilotWorkbenchPage() {
           )}
         </div>
         {error && (
-          <div className="p-4 bg-rose-500/10 border border-rose-500/20 rounded-2xl text-rose-400 text-sm flex items-center gap-2">
-            <AlertTriangle className="w-5 h-5 shrink-0" />
+          <div className="p-4 bg-[#FF6B6B] border-4 border-black text-black text-xs font-black uppercase shadow-[4px_4px_0px_0px_#000] flex items-center gap-2">
+            <AlertTriangle className="w-5 h-5 shrink-0 stroke-[3px]" />
             <span>{error}</span>
           </div>
         )}
 
         {successMsg && (
-          <div className="p-4 bg-emerald-500/10 border border-emerald-500/20 rounded-2xl text-emerald-400 text-sm flex items-center gap-2">
-            <CheckCircle2 className="w-5 h-5 shrink-0" />
+          <div className="p-4 bg-[#86EFAC] border-4 border-black text-black text-xs font-black uppercase shadow-[4px_4px_0px_0px_#000] flex items-center gap-2">
+            <CheckCircle2 className="w-5 h-5 shrink-0 stroke-[3px]" />
             <span>{successMsg}</span>
           </div>
         )}
 
         {loading ? (
-          <div className="flex flex-col items-center justify-center py-20 text-slate-400 gap-3">
-            <Loader2 className="w-8 h-8 animate-spin text-indigo-500" />
-            <p className="text-sm">Loading pilot details and contract state...</p>
+          <div className="flex flex-col items-center justify-center py-20 text-black gap-3 font-mono font-black">
+            <Loader2 className="w-10 h-10 animate-spin text-black stroke-[3px]" />
+            <p className="text-xs uppercase">Loading pilot details and contract state...</p>
           </div>
         ) : !pilot ? (
-          <div className="glass-card rounded-2xl p-12 text-center">
-            <h3 className="text-base font-bold text-white">Pilot Project Not Found</h3>
+          <div className="bg-white p-12 text-center border-4 border-black shadow-[8px_8px_0px_0px_#000]">
+            <h3 className="text-base font-black text-black font-display uppercase">Pilot Project Not Found</h3>
           </div>
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Left Column: AI Draft & Contract Configuration */}
             <div className="lg:col-span-2 space-y-6">
               {/* AI Contract Assistant Box */}
-              <div className="glass-card rounded-2xl p-6 space-y-4 border border-indigo-500/20 bg-indigo-950/10">
+              <div className="bg-white border-4 border-black p-6 space-y-4 shadow-[8px_8px_0px_0px_#000]">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <Sparkles className="w-5 h-5 text-indigo-400" />
-                    <h3 className="font-bold text-white text-base">Gemini AI Legal & Contract Drafter</h3>
+                    <Sparkles className="w-5 h-5 text-black stroke-[3px]" />
+                    <h3 className="font-black text-black text-base font-display uppercase">Gemini AI Legal & Contract Drafter</h3>
                   </div>
                   {!isFinalized && (
                     <button
                       onClick={handleDraftAI}
                       disabled={actionLoading === "ai-draft"}
-                      className="flex items-center gap-1.5 px-3.5 py-1.5 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white text-xs font-bold rounded-xl transition-all"
+                      className="gov-btn-primary text-xs"
                     >
                       {actionLoading === "ai-draft" ? (
-                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <Loader2 className="w-4 h-4 animate-spin stroke-[3px]" />
                       ) : (
-                        <Play className="w-4 h-4 fill-white" />
+                        <Play className="w-4 h-4 fill-black stroke-[3px]" />
                       )}
                       <span>Generate AI Contract Proposal</span>
                     </button>
@@ -613,23 +613,23 @@ export default function OfficerPilotWorkbenchPage() {
                 </div>
 
                 {pilot.contract_ai_draft ? (
-                  <div className="space-y-3 bg-slate-900/60 p-4 rounded-xl border border-slate-800 text-xs">
+                  <div className="space-y-3 bg-[#FFFDF5] p-4 border-2 border-black text-xs font-bold">
                     <div>
-                      <span className="font-bold text-indigo-300 uppercase tracking-wider text-[10px]">AI Suggested IP Terms:</span>
-                      <p className="text-slate-300 mt-1">{pilot.contract_ai_draft.ip_ownership_terms}</p>
+                      <span className="font-black text-black uppercase tracking-wider text-[10px] bg-[#FFD93D] px-1 border border-black inline-block">AI Suggested IP Terms:</span>
+                      <p className="text-black mt-1">{pilot.contract_ai_draft.ip_ownership_terms}</p>
                     </div>
                     <div>
-                      <span className="font-bold text-indigo-300 uppercase tracking-wider text-[10px]">AI Suggested Data Ownership Terms:</span>
-                      <p className="text-slate-300 mt-1">{pilot.contract_ai_draft.data_ownership_terms}</p>
+                      <span className="font-black text-black uppercase tracking-wider text-[10px] bg-[#FFD93D] px-1 border border-black inline-block">AI Suggested Data Ownership Terms:</span>
+                      <p className="text-black mt-1">{pilot.contract_ai_draft.data_ownership_terms}</p>
                     </div>
                     {pilot.contract_ai_draft.suggested_milestones && (
                       <div>
-                        <span className="font-bold text-indigo-300 uppercase tracking-wider text-[10px]">AI Suggested Milestones:</span>
-                        <div className="mt-1 space-y-1">
+                        <span className="font-black text-black uppercase tracking-wider text-[10px] bg-[#C4B5FD] px-1 border border-black inline-block">AI Suggested Milestones:</span>
+                        <div className="mt-1 space-y-1 font-mono">
                           {pilot.contract_ai_draft.suggested_milestones.map((m: any, idx: number) => (
-                            <div key={idx} className="flex justify-between text-slate-400 bg-slate-950/40 p-2 rounded border border-slate-800/50">
+                            <div key={idx} className="flex justify-between text-black bg-white p-2 border border-black">
                               <span>{m.title} (+{m.days_from_start}d)</span>
-                              <span className="font-mono text-indigo-400 font-bold">{m.payment_percentage}%</span>
+                              <span className="font-mono text-black font-black bg-[#86EFAC] px-1 border border-black">{m.payment_percentage}%</span>
                             </div>
                           ))}
                         </div>
@@ -637,91 +637,91 @@ export default function OfficerPilotWorkbenchPage() {
                     )}
                   </div>
                 ) : (
-                  <p className="text-xs text-slate-400">No AI contract draft generated yet. Click "Generate AI Contract Proposal" to ask Gemini for legal terms and milestone recommendations.</p>
+                  <p className="text-xs text-black font-bold uppercase">No AI contract draft generated yet. Click "Generate AI Contract Proposal" to ask Gemini for legal terms and milestone recommendations.</p>
                 )}
               </div>
 
               {/* Final Contract Terms Form */}
-              <div className="glass-card rounded-2xl p-6 space-y-4 border border-slate-800">
-                <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-                  <h3 className="font-bold text-white text-base flex items-center gap-2">
-                    <FileText className="w-5 h-5 text-indigo-400" />
+              <div className="bg-white border-4 border-black p-6 space-y-4 shadow-[8px_8px_0px_0px_#000]">
+                <div className="flex items-center justify-between border-b-2 border-black pb-3">
+                  <h3 className="font-black text-black text-base font-display uppercase flex items-center gap-2">
+                    <FileText className="w-5 h-5 text-black stroke-[3px]" />
                     Official Contract Terms & Execution
                   </h3>
                   {isFinalized && (
-                    <span className="flex items-center gap-1 text-xs font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-lg border border-emerald-500/20">
-                      <Lock className="w-3.5 h-3.5" /> Terms Locked
+                    <span className="flex items-center gap-1 text-xs font-black text-black bg-[#86EFAC] px-2.5 py-1 border-2 border-black shadow-[2px_2px_0px_0px_#000] uppercase font-mono">
+                      <Lock className="w-3.5 h-3.5 stroke-[3px]" /> Terms Locked
                     </span>
                   )}
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div>
-                    <label className="text-xs font-bold text-slate-400 block mb-1">Start Date</label>
+                    <label className="text-xs font-black text-black uppercase block mb-1">Start Date</label>
                     <input
                       type="date"
                       value={startDate}
                       disabled={isFinalized}
                       onChange={(e) => setStartDate(e.target.value)}
-                      className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-white disabled:opacity-50"
+                      className="w-full p-2.5 bg-white border-2 border-black text-xs font-bold text-black disabled:bg-slate-100"
                     />
                   </div>
                   <div>
-                    <label className="text-xs font-bold text-slate-400 block mb-1">End Date</label>
+                    <label className="text-xs font-black text-black uppercase block mb-1">End Date</label>
                     <input
                       type="date"
                       value={endDate}
                       disabled={isFinalized}
                       onChange={(e) => setEndDate(e.target.value)}
-                      className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-white disabled:opacity-50"
+                      className="w-full p-2.5 bg-white border-2 border-black text-xs font-bold text-black disabled:bg-slate-100"
                     />
                   </div>
                   <div>
-                    <label className="text-xs font-bold text-slate-400 block mb-1">Total Budget (INR)</label>
+                    <label className="text-xs font-black text-black uppercase block mb-1">Total Budget (INR)</label>
                     <input
                       type="number"
                       value={budget}
                       disabled={isFinalized}
                       onChange={(e) => setBudget(e.target.value)}
                       placeholder="e.g. 500000.00"
-                      className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-white disabled:opacity-50"
+                      className="w-full p-2.5 bg-white border-2 border-black text-xs font-bold font-mono text-black disabled:bg-slate-100"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="text-xs font-bold text-slate-400 block mb-1">IP Ownership Terms</label>
+                  <label className="text-xs font-black text-black uppercase block mb-1">IP Ownership Terms</label>
                   <textarea
                     rows={3}
                     value={ipTerms}
                     disabled={isFinalized}
                     onChange={(e) => setIpTerms(e.target.value)}
                     placeholder="Explicit IP ownership clauses..."
-                    className="w-full p-3 bg-slate-900 border border-slate-800 rounded-xl text-xs text-white disabled:opacity-50 focus:outline-none focus:border-indigo-500"
+                    className="w-full p-3 bg-white border-2 border-black text-xs font-bold text-black disabled:bg-slate-100 focus:outline-none focus:bg-[#FFFDF5]"
                   />
                 </div>
 
                 <div>
-                  <label className="text-xs font-bold text-slate-400 block mb-1">Data Ownership Terms</label>
+                  <label className="text-xs font-black text-black uppercase block mb-1">Data Ownership Terms</label>
                   <textarea
                     rows={3}
                     value={dataTerms}
                     disabled={isFinalized}
                     onChange={(e) => setDataTerms(e.target.value)}
                     placeholder="Data ownership and telemetry privacy clauses..."
-                    className="w-full p-3 bg-slate-900 border border-slate-800 rounded-xl text-xs text-white disabled:opacity-50 focus:outline-none focus:border-indigo-500"
+                    className="w-full p-3 bg-white border-2 border-black text-xs font-bold text-black disabled:bg-slate-100 focus:outline-none focus:bg-[#FFFDF5]"
                   />
                 </div>
 
                 <div>
-                  <label className="text-xs font-bold text-slate-400 block mb-1">Contract Document UUID (from /documents upload)</label>
+                  <label className="text-xs font-black text-black uppercase block mb-1">Contract Document UUID (from /documents upload)</label>
                   <input
                     type="text"
                     value={contractDocId}
                     disabled={isFinalized}
                     onChange={(e) => setContractDocId(e.target.value)}
                     placeholder="e.g. 123e4567-e89b-12d3-a456-426614174000"
-                    className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs font-mono text-white disabled:opacity-50"
+                    className="w-full p-2.5 bg-white border-2 border-black text-xs font-mono font-bold text-black disabled:bg-slate-100"
                   />
                 </div>
 
@@ -730,7 +730,7 @@ export default function OfficerPilotWorkbenchPage() {
                     <button
                       onClick={handleSaveTerms}
                       disabled={actionLoading === "save-terms"}
-                      className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold rounded-xl border border-slate-700"
+                      className="gov-btn-secondary text-xs"
                     >
                       Save Draft Terms
                     </button>
@@ -738,12 +738,12 @@ export default function OfficerPilotWorkbenchPage() {
                     <button
                       onClick={handleFinalizeContract}
                       disabled={actionLoading === "finalize"}
-                      className="flex items-center gap-1.5 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white text-xs font-bold rounded-xl transition-all shadow-lg shadow-emerald-500/20"
+                      className="gov-btn-primary text-xs"
                     >
                       {actionLoading === "finalize" ? (
-                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <Loader2 className="w-4 h-4 animate-spin stroke-[3px]" />
                       ) : (
-                        <ShieldCheck className="w-4 h-4" />
+                        <ShieldCheck className="w-4 h-4 stroke-[3px]" />
                       )}
                       <span>Finalize Contract & Lock Terms</span>
                     </button>
@@ -753,41 +753,41 @@ export default function OfficerPilotWorkbenchPage() {
 
               {/* KPI Tracking & Metric Reporting */}
               {isFinalized && (
-                <div className="glass-card rounded-2xl p-6 space-y-6 border border-slate-800">
-                  <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-                    <h3 className="font-bold text-white text-base flex items-center gap-2">
-                      <Sparkles className="w-5 h-5 text-indigo-400" />
+                <div className="bg-white border-4 border-black p-6 space-y-6 shadow-[8px_8px_0px_0px_#000]">
+                  <div className="flex items-center justify-between border-b-2 border-black pb-3">
+                    <h3 className="font-black text-black text-base font-display uppercase flex items-center gap-2">
+                      <Sparkles className="w-5 h-5 text-black stroke-[3px]" />
                       KPI Performance Workspace
                     </h3>
                     <button
                       onClick={handleSuggestKPIs}
-                      className="px-3.5 py-1.5 bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-300 text-xs font-bold rounded-xl border border-indigo-500/30"
+                      className="gov-btn-secondary text-xs"
                     >
                       Suggest AI KPIs
                     </button>
                   </div>
 
                   {kpiError && (
-                    <div className="p-3.5 bg-rose-500/10 border border-rose-500/20 rounded-xl text-rose-400 text-xs">
+                    <div className="p-3.5 bg-[#FF6B6B] border-2 border-black text-black text-xs font-black uppercase">
                       {kpiError}
                     </div>
                   )}
                   {kpiSuccess && (
-                    <div className="p-3.5 bg-emerald-500/10 border border-emerald-500/20 rounded-xl text-emerald-400 text-xs">
+                    <div className="p-3.5 bg-[#86EFAC] border-2 border-black text-black text-xs font-black uppercase">
                       {kpiSuccess}
                     </div>
                   )}
 
                   {/* Manual KPI Creation Form */}
-                  <form onSubmit={handleAddManualKPI} className="p-4 bg-slate-900/60 rounded-xl border border-slate-800 space-y-3">
-                    <h4 className="font-bold text-white text-xs">Add Custom KPI</h4>
+                  <form onSubmit={handleAddManualKPI} className="p-4 bg-[#FFFDF5] border-2 border-black space-y-3">
+                    <h4 className="font-black text-black text-xs uppercase">Add Custom KPI</h4>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                       <input
                         type="text"
                         placeholder="KPI Name (e.g. System Uptime)"
                         value={newKpiName}
                         onChange={(e) => setNewKpiName(e.target.value)}
-                        className="p-2.5 bg-slate-900 border border-slate-800 rounded-lg text-xs text-white"
+                        className="p-2.5 bg-white border-2 border-black text-xs font-bold text-black"
                         required
                       />
                       <input
@@ -795,7 +795,7 @@ export default function OfficerPilotWorkbenchPage() {
                         placeholder="Unit (e.g. %, hours, users)"
                         value={newKpiUnit}
                         onChange={(e) => setNewKpiUnit(e.target.value)}
-                        className="p-2.5 bg-slate-900 border border-slate-800 rounded-lg text-xs text-white"
+                        className="p-2.5 bg-white border-2 border-black text-xs font-bold text-black"
                         required
                       />
                     </div>
@@ -803,7 +803,7 @@ export default function OfficerPilotWorkbenchPage() {
                       <select
                         value={newKpiDir}
                         onChange={(e) => setNewKpiDir(e.target.value)}
-                        className="p-2.5 bg-slate-900 border border-slate-800 rounded-lg text-xs text-white"
+                        className="p-2.5 bg-white border-2 border-black text-xs font-bold text-black"
                       >
                         <option value="increase">Increase (higher is better)</option>
                         <option value="decrease">Decrease (lower is better)</option>
@@ -811,7 +811,7 @@ export default function OfficerPilotWorkbenchPage() {
                       <select
                         value={newKpiFreq}
                         onChange={(e) => setNewKpiFreq(e.target.value)}
-                        className="p-2.5 bg-slate-900 border border-slate-800 rounded-lg text-xs text-white"
+                        className="p-2.5 bg-white border-2 border-black text-xs font-bold text-black"
                       >
                         <option value="monthly">Monthly</option>
                         <option value="weekly">Weekly</option>
@@ -819,7 +819,7 @@ export default function OfficerPilotWorkbenchPage() {
                       </select>
                       <button
                         type="submit"
-                        className="py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-lg transition-all"
+                        className="gov-btn-primary text-xs"
                       >
                         Add KPI
                       </button>
@@ -829,7 +829,7 @@ export default function OfficerPilotWorkbenchPage() {
                   {/* KPIs Grid List */}
                   <div className="space-y-4">
                     {kpis.length === 0 ? (
-                      <p className="text-xs text-slate-500 italic text-center py-4">No KPIs defined yet. Click "Suggest AI KPIs" or add a manual KPI above.</p>
+                      <p className="text-xs text-black font-bold uppercase italic text-center py-4">No KPIs defined yet. Click "Suggest AI KPIs" or add a manual KPI above.</p>
                     ) : (
                       kpis.map((kpi) => {
                         const progress = kpi.progress_percentage;
@@ -837,29 +837,29 @@ export default function OfficerPilotWorkbenchPage() {
                         const latestVal = kpi.measurements?.length > 0 ? kpi.measurements[kpi.measurements.length - 1].measured_value : null;
 
                         return (
-                          <div key={kpi.id} className="p-4 bg-slate-900/60 border border-slate-800 rounded-xl space-y-3">
+                          <div key={kpi.id} className="p-4 bg-[#FFFDF5] border-2 border-black space-y-3">
                             <div className="flex justify-between items-start">
                               <div>
-                                <h4 className="font-bold text-white text-sm">{kpi.kpi_name}</h4>
-                                <p className="text-xs text-slate-400 mt-0.5">{kpi.description || "No description configured."}</p>
+                                <h4 className="font-black text-black text-sm uppercase">{kpi.kpi_name}</h4>
+                                <p className="text-xs text-black font-bold mt-0.5">{kpi.description || "No description configured."}</p>
                               </div>
-                              <span className="px-2 py-0.5 bg-slate-800 text-slate-400 rounded text-[10px] uppercase font-bold tracking-wider font-mono">
+                              <span className="px-2 py-0.5 bg-[#FFD93D] text-black border border-black text-[10px] uppercase font-black font-mono">
                                 {kpi.source} ({kpi.measurement_frequency})
                               </span>
                             </div>
 
-                            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs border-t border-b border-slate-800/50 py-2.5">
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs border-t-2 border-b-2 border-black py-2.5 font-mono">
                               <div>
-                                <span className="text-slate-500 text-[10px] block">BASELINE</span>
-                                <span className="font-mono text-white font-bold">{kpi.baseline_value !== null ? `${kpi.baseline_value} ${kpi.unit}` : "Not Configured"}</span>
+                                <span className="text-black text-[10px] block font-bold uppercase">BASELINE</span>
+                                <span className="text-black font-black">{kpi.baseline_value !== null ? `${kpi.baseline_value} ${kpi.unit}` : "Not Configured"}</span>
                               </div>
                               <div>
-                                <span className="text-slate-500 text-[10px] block">TARGET ({kpi.target_direction})</span>
-                                <span className="font-mono text-white font-bold">{kpi.target_value !== null ? `${kpi.target_value} ${kpi.unit}` : "Not Configured"}</span>
+                                <span className="text-black text-[10px] block font-bold uppercase">TARGET ({kpi.target_direction})</span>
+                                <span className="text-black font-black">{kpi.target_value !== null ? `${kpi.target_value} ${kpi.unit}` : "Not Configured"}</span>
                               </div>
                               <div>
-                                <span className="text-slate-500 text-[10px] block">LATEST VALUE</span>
-                                <span className="font-mono text-indigo-400 font-bold">{latestVal !== null ? `${latestVal} ${kpi.unit}` : "No metrics"}</span>
+                                <span className="text-black text-[10px] block font-bold uppercase">LATEST VALUE</span>
+                                <span className="text-black font-black bg-[#C4B5FD] px-1 border border-black">{latestVal !== null ? `${latestVal} ${kpi.unit}` : "No metrics"}</span>
                               </div>
                               <div className="flex items-center justify-end gap-1.5 col-span-2 md:col-span-1">
                                 <button
@@ -870,13 +870,13 @@ export default function OfficerPilotWorkbenchPage() {
                                     setEditKpiFreq(kpi.measurement_frequency);
                                     setEditKpiDesc(kpi.description || "");
                                   }}
-                                  className="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded text-[10px] font-bold border border-slate-700"
+                                  className="gov-btn-secondary text-[10px] py-1 px-2"
                                 >
                                   Edit Target
                                 </button>
                                 <button
                                   onClick={() => setMeasuringKpiId(kpi.id)}
-                                  className="px-2 py-1 bg-indigo-600 hover:bg-indigo-500 text-white rounded text-[10px] font-bold"
+                                  className="gov-btn-primary text-[10px] py-1 px-2"
                                 >
                                   Add Value
                                 </button>
@@ -884,14 +884,14 @@ export default function OfficerPilotWorkbenchPage() {
                             </div>
 
                             {/* Progress bar */}
-                            <div className="space-y-1">
-                              <div className="flex justify-between text-[10px]">
-                                <span className="text-slate-400">Target Progress Status</span>
-                                <span className="font-bold font-mono text-indigo-400">{hasProgress ? `${progress}%` : kpi.reason || "Missing data"}</span>
+                            <div className="space-y-1 font-mono">
+                              <div className="flex justify-between text-[10px] font-black">
+                                <span className="text-black uppercase">Target Progress Status</span>
+                                <span className="text-black bg-[#86EFAC] px-1 border border-black">{hasProgress ? `${progress}%` : kpi.reason || "Missing data"}</span>
                               </div>
-                              <div className="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
+                              <div className="w-full bg-white border-2 border-black h-3 overflow-hidden">
                                 <div
-                                  className="bg-indigo-500 h-2 rounded-full transition-all duration-300"
+                                  className="bg-[#FF6B6B] h-full transition-all duration-300 border-r-2 border-black"
                                   style={{ width: `${hasProgress ? progress : 0}%` }}
                                 />
                               </div>
@@ -903,31 +903,31 @@ export default function OfficerPilotWorkbenchPage() {
                   </div>
 
                   {/* AI performance narrative summary */}
-                  <div className="border-t border-slate-800 pt-6 space-y-4">
+                  <div className="border-t-2 border-black pt-6 space-y-4">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <Sparkles className="w-5 h-5 text-indigo-400 animate-pulse" />
-                        <h4 className="font-bold text-white text-sm">Factual Performance Narrative Summary (Gemini)</h4>
+                        <Sparkles className="w-5 h-5 text-black stroke-[3px]" />
+                        <h4 className="font-black text-black text-sm font-display uppercase">Factual Performance Narrative Summary (Gemini)</h4>
                       </div>
                       <button
                         onClick={() => fetchAISummary(true)}
                         disabled={loadingSummary}
-                        className="px-3.5 py-1.5 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white text-xs font-bold rounded-xl transition-all flex items-center gap-1.5"
+                        className="gov-btn-primary text-xs flex items-center gap-1.5"
                       >
                         {loadingSummary ? (
-                          <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                          <Loader2 className="w-3.5 h-3.5 animate-spin stroke-[3px]" />
                         ) : (
-                          <Sparkles className="w-3.5 h-3.5" />
+                          <Sparkles className="w-3.5 h-3.5 stroke-[3px]" />
                         )}
                         <span>{aiSummary?.summary ? "Regenerate Summary" : "Generate Summary"}</span>
                       </button>
                     </div>
 
                     {aiSummary?.summary && (
-                      <div className="bg-slate-900/60 p-4 rounded-xl border border-slate-800 space-y-3">
+                      <div className="bg-[#FFFDF5] p-4 border-2 border-black space-y-3 text-xs font-bold text-black">
                         <AIFallbackBanner aiGenerated={aiSummary.ai_generated} />
-                        <p className="text-xs text-slate-300 whitespace-pre-line leading-relaxed">{aiSummary.summary}</p>
-                        <p className="text-[10px] text-slate-500">Narrative generated at: {new Date(aiSummary.generated_at).toLocaleString()}</p>
+                        <p className="whitespace-pre-line leading-relaxed">{aiSummary.summary}</p>
+                        <p className="text-[10px] font-mono text-black">Narrative generated at: {new Date(aiSummary.generated_at).toLocaleString()}</p>
                       </div>
                     )}
                   </div>
@@ -939,15 +939,15 @@ export default function OfficerPilotWorkbenchPage() {
             <div className="space-y-6">
               {/* Milestone Create Form */}
               {!isFinalized && (
-                <form onSubmit={handleCreateMilestone} className="glass-card rounded-2xl p-6 space-y-4 border border-slate-800">
-                  <h3 className="font-bold text-white text-sm">Add Milestone</h3>
+                <form onSubmit={handleCreateMilestone} className="bg-white border-4 border-black p-6 space-y-4 shadow-[8px_8px_0px_0px_#000]">
+                  <h3 className="font-black text-black text-sm font-display uppercase">Add Milestone</h3>
                   <div>
                     <input
                       type="text"
                       value={msTitle}
                       onChange={(e) => setMsTitle(e.target.value)}
                       placeholder="Milestone Title"
-                      className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-white"
+                      className="w-full p-2.5 bg-white border-2 border-black text-xs font-bold text-black"
                       required
                     />
                   </div>
@@ -957,7 +957,7 @@ export default function OfficerPilotWorkbenchPage() {
                       value={msDesc}
                       onChange={(e) => setMsDesc(e.target.value)}
                       placeholder="Description (Optional)"
-                      className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-white"
+                      className="w-full p-2.5 bg-white border-2 border-black text-xs font-bold text-black"
                     />
                   </div>
                   <div className="grid grid-cols-2 gap-3">
@@ -965,7 +965,7 @@ export default function OfficerPilotWorkbenchPage() {
                       type="date"
                       value={msDueDate}
                       onChange={(e) => setMsDueDate(e.target.value)}
-                      className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-white"
+                      className="w-full p-2.5 bg-white border-2 border-black text-xs font-bold text-black"
                       required
                     />
                     <input
@@ -973,14 +973,14 @@ export default function OfficerPilotWorkbenchPage() {
                       value={msAmount}
                       onChange={(e) => setMsAmount(e.target.value)}
                       placeholder="Amount (INR)"
-                      className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-white"
+                      className="w-full p-2.5 bg-white border-2 border-black text-xs font-bold font-mono text-black"
                       required
                     />
                   </div>
                   <button
                     type="submit"
                     disabled={actionLoading === "create-ms"}
-                    className="w-full py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-xl transition-all"
+                    className="gov-btn-primary w-full text-xs"
                   >
                     Add Milestone
                   </button>
@@ -988,41 +988,40 @@ export default function OfficerPilotWorkbenchPage() {
               )}
 
               {/* Milestones List */}
-              <div className="glass-card rounded-2xl p-6 space-y-4 border border-slate-800">
-                <h3 className="font-bold text-white text-sm flex items-center justify-between">
+              <div className="bg-white border-4 border-black p-6 space-y-4 shadow-[8px_8px_0px_0px_#000]">
+                <h3 className="font-black text-black text-sm font-display uppercase flex items-center justify-between">
                   <span>Milestones & Payments</span>
-                  <span className="text-xs font-mono text-indigo-400">{pilot.milestones?.length || 0} Total</span>
+                  <span className="text-xs font-mono font-black bg-[#FFD93D] px-2 py-0.5 border border-black text-black">{pilot.milestones?.length || 0} Total</span>
                 </h3>
 
                 {pilot.milestones?.length === 0 ? (
-                  <p className="text-xs text-slate-500 italic">No milestones defined yet.</p>
+                  <p className="text-xs text-black font-bold uppercase italic">No milestones defined yet.</p>
                 ) : (
                   <div className="space-y-4">
                     {pilot.milestones.map((m: any) => (
-                      <div key={m.id} className="p-4 bg-slate-900/80 rounded-xl border border-slate-800 space-y-3">
+                      <div key={m.id} className="p-4 bg-[#FFFDF5] border-2 border-black space-y-3">
                         <div className="flex justify-between items-start">
                           <div>
-                            <h4 className="font-bold text-white text-xs">{m.title}</h4>
-                            <p className="text-[10px] text-slate-400">Due: {m.due_date} | Amount: ₹{Number(m.payment_amount).toLocaleString()}</p>
+                            <h4 className="font-black text-black text-xs uppercase">{m.title}</h4>
+                            <p className="text-[10px] font-mono text-black font-bold mt-1">Due: {m.due_date} | Amount: ₹{Number(m.payment_amount).toLocaleString()}</p>
                           </div>
-                          <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${
-                            m.status === "paid" ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20" :
-                            m.status === "approved" ? "bg-indigo-500/10 text-indigo-400 border border-indigo-500/20" :
-                            m.status === "payment_initiated" ? "bg-amber-500/10 text-amber-400 border border-amber-500/20" :
-                            m.status === "submitted" ? "bg-purple-500/10 text-purple-400 border border-purple-500/20" :
-                            "bg-slate-800 text-slate-400 border border-slate-700"
+                          <span className={`status-pill ${
+                            m.status === "paid" ? "status-published" :
+                            m.status === "approved" ? "status-active" :
+                            m.status === "payment_initiated" ? "status-pending" :
+                            "status-draft"
                           }`}>
                             {m.status}
                           </span>
                         </div>
 
                         {/* Milestone Actions */}
-                        <div className="flex flex-wrap gap-2 pt-2 border-t border-slate-800/60">
+                        <div className="flex flex-wrap gap-2 pt-2 border-t-2 border-black">
                           {m.status === "submitted" && (
                             <button
                               onClick={() => handleApproveMilestone(m.id)}
                               disabled={actionLoading === `approve-${m.id}`}
-                              className="px-3 py-1 bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 text-[10px] font-bold rounded-lg border border-emerald-500/30"
+                              className="gov-btn-primary text-[10px] py-1 px-2.5"
                             >
                               Approve Evidence
                             </button>
@@ -1031,7 +1030,7 @@ export default function OfficerPilotWorkbenchPage() {
                           {m.status === "approved" && (
                             <button
                               onClick={() => setInitPayMsId(m.id)}
-                              className="px-3 py-1 bg-amber-600/20 hover:bg-amber-600/30 text-amber-300 text-[10px] font-bold rounded-lg border border-amber-500/30"
+                              className="gov-btn-primary text-[10px] py-1 px-2.5"
                             >
                               Initiate Payment
                             </button>
@@ -1040,7 +1039,7 @@ export default function OfficerPilotWorkbenchPage() {
                           {m.status === "payment_initiated" && (
                             <button
                               onClick={() => setConfirmPayMsId(m.id)}
-                              className="px-3 py-1 bg-purple-600/20 hover:bg-purple-600/30 text-purple-300 text-[10px] font-bold rounded-lg border border-purple-500/30"
+                              className="gov-btn-primary text-[10px] py-1 px-2.5"
                             >
                               Confirm Payment (Checker)
                             </button>
@@ -1058,20 +1057,20 @@ export default function OfficerPilotWorkbenchPage() {
 
       {/* Initiate Payment Modal */}
       {initPayMsId && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4">
-          <div className="glass-card max-w-md w-full rounded-2xl p-6 space-y-4 border border-slate-700 shadow-2xl">
-            <h3 className="text-base font-bold text-white">Initiate Milestone Payment</h3>
-            <p className="text-xs text-slate-400">Provide payment reference ID (UTR / Transaction Reference):</p>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+          <div className="bg-white border-4 border-black p-6 max-w-md w-full space-y-4 shadow-[12px_12px_0px_0px_#000]">
+            <h3 className="text-base font-black text-black font-display uppercase">Initiate Milestone Payment</h3>
+            <p className="text-xs text-black font-bold uppercase">Provide payment reference ID (UTR / Transaction Reference):</p>
             <input
               type="text"
               value={payRef}
               onChange={(e) => setPayRef(e.target.value)}
               placeholder="e.g. UTR-2026-9988776655"
-              className="w-full p-3 bg-slate-900 border border-slate-800 rounded-xl text-xs text-white font-mono"
+              className="w-full p-3 bg-white border-2 border-black text-xs font-mono font-bold text-black"
             />
             <div className="flex justify-end gap-3 pt-2">
-              <button onClick={() => setInitPayMsId(null)} className="px-4 py-2 bg-slate-800 text-slate-300 text-xs font-bold rounded-xl">Cancel</button>
-              <button onClick={handleInitiatePayment} disabled={!payRef.trim()} className="px-4 py-2 bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold rounded-xl">Initiate Payment</button>
+              <button onClick={() => setInitPayMsId(null)} className="gov-btn-secondary text-xs">Cancel</button>
+              <button onClick={handleInitiatePayment} disabled={!payRef.trim()} className="gov-btn-primary text-xs">Initiate Payment</button>
             </div>
           </div>
         </div>
@@ -1079,55 +1078,55 @@ export default function OfficerPilotWorkbenchPage() {
 
       {/* Confirm Payment Modal */}
       {confirmPayMsId && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4">
-          <div className="glass-card max-w-md w-full rounded-2xl p-6 space-y-4 border border-slate-700 shadow-2xl">
-            <h3 className="text-base font-bold text-white">Confirm Payment (Maker-Checker Dual Approval)</h3>
-            <p className="text-xs text-slate-400">Provide payment proof document UUID (uploaded via /documents):</p>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+          <div className="bg-white border-4 border-black p-6 max-w-md w-full space-y-4 shadow-[12px_12px_0px_0px_#000]">
+            <h3 className="text-base font-black text-black font-display uppercase">Confirm Payment (Maker-Checker Dual Approval)</h3>
+            <p className="text-xs text-black font-bold uppercase">Provide payment proof document UUID (uploaded via /documents):</p>
             <input
               type="text"
               value={payProofDocId}
               onChange={(e) => setPayProofDocId(e.target.value)}
               placeholder="e.g. 987e6543-e21b-12d3-a456-426614174000"
-              className="w-full p-3 bg-slate-900 border border-slate-800 rounded-xl text-xs text-white font-mono"
+              className="w-full p-3 bg-white border-2 border-black text-xs font-mono font-bold text-black"
             />
             <div className="flex justify-end gap-3 pt-2">
-              <button onClick={() => setConfirmPayMsId(null)} className="px-4 py-2 bg-slate-800 text-slate-300 text-xs font-bold rounded-xl">Cancel</button>
-              <button onClick={handleConfirmPayment} disabled={!payProofDocId.trim()} className="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-xl">Confirm Payment</button>
+              <button onClick={() => setConfirmPayMsId(null)} className="gov-btn-secondary text-xs">Cancel</button>
+              <button onClick={handleConfirmPayment} disabled={!payProofDocId.trim()} className="gov-btn-primary text-xs">Confirm Payment</button>
             </div>
           </div>
         </div>
       )}
       {/* Configure KPI Target Modal */}
       {editingKpiId && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4">
-          <div className="glass-card max-w-md w-full rounded-2xl p-6 space-y-4 border border-slate-700 shadow-2xl">
-            <h3 className="text-base font-bold text-white">Configure KPI Baseline & Target</h3>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+          <div className="bg-white border-4 border-black p-6 max-w-md w-full space-y-4 shadow-[12px_12px_0px_0px_#000]">
+            <h3 className="text-base font-black text-black font-display uppercase">Configure KPI Baseline & Target</h3>
             <div>
-              <label className="text-xs font-bold text-slate-400 block mb-1">Baseline Value</label>
+              <label className="text-xs font-black text-black uppercase block mb-1">Baseline Value</label>
               <input
                 type="number"
                 value={editKpiBaseline}
                 onChange={(e) => setEditKpiBaseline(e.target.value)}
                 placeholder="e.g. 10.0"
-                className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-white"
+                className="w-full p-2.5 bg-white border-2 border-black text-xs font-bold text-black"
               />
             </div>
             <div>
-              <label className="text-xs font-bold text-slate-400 block mb-1">Target Value</label>
+              <label className="text-xs font-black text-black uppercase block mb-1">Target Value</label>
               <input
                 type="number"
                 value={editKpiTarget}
                 onChange={(e) => setEditKpiTarget(e.target.value)}
                 placeholder="e.g. 50.0"
-                className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-white"
+                className="w-full p-2.5 bg-white border-2 border-black text-xs font-bold text-black"
               />
             </div>
             <div>
-              <label className="text-xs font-bold text-slate-400 block mb-1">Measurement Frequency</label>
+              <label className="text-xs font-black text-black uppercase block mb-1">Measurement Frequency</label>
               <select
                 value={editKpiFreq}
                 onChange={(e) => setEditKpiFreq(e.target.value)}
-                className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-white"
+                className="w-full p-2.5 bg-white border-2 border-black text-xs font-bold text-black"
               >
                 <option value="monthly">Monthly</option>
                 <option value="weekly">Weekly</option>
@@ -1135,17 +1134,17 @@ export default function OfficerPilotWorkbenchPage() {
               </select>
             </div>
             <div>
-              <label className="text-xs font-bold text-slate-400 block mb-1">Description</label>
+              <label className="text-xs font-black text-black uppercase block mb-1">Description</label>
               <textarea
                 value={editKpiDesc}
                 onChange={(e) => setEditKpiDesc(e.target.value)}
                 placeholder="KPI description details..."
-                className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-white"
+                className="w-full p-2.5 bg-white border-2 border-black text-xs font-bold text-black"
               />
             </div>
             <div className="flex justify-end gap-3 pt-2">
-              <button onClick={() => setEditingKpiId(null)} className="px-4 py-2 bg-slate-800 text-slate-300 text-xs font-bold rounded-xl">Cancel</button>
-              <button onClick={handleUpdateKPI} className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-xl">Save Settings</button>
+              <button onClick={() => setEditingKpiId(null)} className="gov-btn-secondary text-xs">Cancel</button>
+              <button onClick={handleUpdateKPI} className="gov-btn-primary text-xs">Save Settings</button>
             </div>
           </div>
         </div>
@@ -1153,41 +1152,41 @@ export default function OfficerPilotWorkbenchPage() {
 
       {/* Record KPI Measurement Modal */}
       {measuringKpiId && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4">
-          <div className="glass-card max-w-md w-full rounded-2xl p-6 space-y-4 border border-slate-700 shadow-2xl">
-            <h3 className="text-base font-bold text-white">Record KPI Actual Metric</h3>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+          <div className="bg-white border-4 border-black p-6 max-w-md w-full space-y-4 shadow-[12px_12px_0px_0px_#000]">
+            <h3 className="text-base font-black text-black font-display uppercase">Record KPI Actual Metric</h3>
             <div>
-              <label className="text-xs font-bold text-slate-400 block mb-1">Measured Value</label>
+              <label className="text-xs font-black text-black uppercase block mb-1">Measured Value</label>
               <input
                 type="number"
                 value={measuredVal}
                 onChange={(e) => setMeasuredVal(e.target.value)}
                 placeholder="Measured value number"
-                className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-white"
+                className="w-full p-2.5 bg-white border-2 border-black text-xs font-bold font-mono text-black"
               />
             </div>
             <div>
-              <label className="text-xs font-bold text-slate-400 block mb-1">Evidence Document UUID (Optional)</label>
+              <label className="text-xs font-black text-black uppercase block mb-1">Evidence Document UUID (Optional)</label>
               <input
                 type="text"
                 value={measuredEvidence}
                 onChange={(e) => setMeasuredEvidence(e.target.value)}
                 placeholder="UUID"
-                className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-white"
+                className="w-full p-2.5 bg-white border-2 border-black text-xs font-mono font-bold text-black"
               />
             </div>
             <div>
-              <label className="text-xs font-bold text-slate-400 block mb-1">Remarks (Optional)</label>
+              <label className="text-xs font-black text-black uppercase block mb-1">Remarks (Optional)</label>
               <textarea
                 value={measuredRemarks}
                 onChange={(e) => setMeasuredRemarks(e.target.value)}
                 placeholder="Enter remarks..."
-                className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-white"
+                className="w-full p-2.5 bg-white border-2 border-black text-xs font-bold text-black"
               />
             </div>
             <div className="flex justify-end gap-3 pt-2">
-              <button onClick={() => setMeasuringKpiId(null)} className="px-4 py-2 bg-slate-800 text-slate-300 text-xs font-bold rounded-xl">Cancel</button>
-              <button onClick={handleRecordMeasurement} className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-xl">Record Measurement</button>
+              <button onClick={() => setMeasuringKpiId(null)} className="gov-btn-secondary text-xs">Cancel</button>
+              <button onClick={handleRecordMeasurement} className="gov-btn-primary text-xs">Record Measurement</button>
             </div>
           </div>
         </div>

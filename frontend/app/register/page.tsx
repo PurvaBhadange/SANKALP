@@ -4,7 +4,9 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { setCookie } from "cookies-next";
-import { Building2, ArrowRight, Loader2, ArrowLeft, AlertCircle } from "lucide-react";
+import { Building2, ArrowRight, Loader2, ArrowLeft, AlertCircle, Globe, ChevronDown, Check } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
+import { Language } from "@/lib/translations";
 
 interface Sector {
   id: string;
@@ -22,6 +24,7 @@ const DEFAULT_FALLBACK_SECTORS: Sector[] = [
 ];
 
 export default function RegisterStartup() {
+  const { language, setLanguage, t } = useLanguage();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
@@ -30,6 +33,7 @@ export default function RegisterStartup() {
   const [sectorId, setSectorId] = useState("agritech");
   const [description, setDescription] = useState("");
   const [sectors, setSectors] = useState<Sector[]>(DEFAULT_FALLBACK_SECTORS);
+  const [langDropdownOpen, setLangDropdownOpen] = useState(false);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -103,23 +107,65 @@ export default function RegisterStartup() {
     }
   };
 
+  const languages: { code: Language; label: string }[] = [
+    { code: "en", label: "ENGLISH" },
+    { code: "hi", label: "हिंदी" },
+    { code: "mr", label: "मराठी" }
+  ];
+
+  const currentLangLabel = languages.find(l => l.code === language)?.label || "ENGLISH";
+
   return (
-    <div className="min-h-screen bg-[#FFFDF5] text-black flex flex-col justify-between relative overflow-hidden font-sans bg-halftone">
+    <div className="min-h-screen bg-[#FFFDF5] text-black flex flex-col justify-between relative overflow-hidden font-sans">
       {/* Top Header */}
-      <header className="border-b-4 border-black bg-black text-white px-6 py-4 flex items-center justify-between relative z-10">
+      <header className="border-b-4 border-black bg-black text-white px-6 py-4 flex items-center justify-between relative z-10 font-mono">
         <div className="flex items-center gap-3">
           <Link href="/login" className="p-2 bg-[#FFD93D] text-black border-2 border-black font-black shadow-[2px_2px_0px_0px_#000] hover:bg-[#ffcc00] transition-all">
             <ArrowLeft className="w-4 h-4 stroke-[3px]" />
           </Link>
           <div>
-            <span className="font-black text-white text-lg tracking-tighter uppercase font-display">SANKALP</span>
+            <span className="font-black text-white text-lg tracking-tighter uppercase font-display">{t("brand_title")}</span>
             <span className="block text-[10px] text-[#FFD93D] uppercase tracking-wider font-black">Startup Onboarding</span>
           </div>
         </div>
 
-        <Link href="/login" className="text-xs text-[#FFD93D] hover:underline font-black uppercase">
-          Already registered? Sign In
-        </Link>
+        <div className="flex items-center gap-4">
+          {/* Language Toggle */}
+          <div className="relative">
+            <button 
+              onClick={() => setLangDropdownOpen(!langDropdownOpen)}
+              className="flex items-center gap-1.5 cursor-pointer text-white font-black hover:text-[#FFD93D] bg-black/60 px-3 py-1 border border-white/30 rounded focus:outline-none text-xs"
+            >
+              <Globe className="w-3.5 h-3.5 text-[#FFD93D]" />
+              <span className="tracking-wider">{currentLangLabel}</span>
+              <ChevronDown className={`w-3 h-3 text-white transition-transform ${langDropdownOpen ? "rotate-180" : ""}`} />
+            </button>
+
+            {langDropdownOpen && (
+              <div className="absolute right-0 mt-1.5 w-36 bg-[#FFFDF5] text-black border-3 border-black shadow-[4px_4px_0px_0px_#000] py-1 z-50 font-mono">
+                {languages.map((lang) => (
+                  <button
+                    key={lang.code}
+                    onClick={() => {
+                      setLanguage(lang.code);
+                      setLangDropdownOpen(false);
+                    }}
+                    className={`w-full text-left px-3 py-1.5 text-xs font-black flex items-center justify-between hover:bg-[#FFD93D] transition-all ${
+                      language === lang.code ? "bg-[#FF6B6B] text-black" : "text-black"
+                    }`}
+                  >
+                    <span>{lang.label}</span>
+                    {language === lang.code && <Check className="w-3.5 h-3.5 stroke-[3px]" />}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <Link href="/login" className="text-xs text-[#FFD93D] hover:underline font-black uppercase">
+            {t("link_have_account")}
+          </Link>
+        </div>
       </header>
 
       {/* Main Content Area */}
@@ -131,7 +177,7 @@ export default function RegisterStartup() {
             </div>
             <h1 className="text-3xl font-black text-black tracking-tight font-display uppercase flex items-center gap-2">
               <Building2 className="w-7 h-7 text-black stroke-[3px]" />
-              Startup Entity Registration
+              {t("btn_register")}
             </h1>
             <p className="text-xs text-black font-bold mt-1 uppercase">
               Create your startup account to enable AI semantic matching with public procurement challenges.
@@ -145,12 +191,12 @@ export default function RegisterStartup() {
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4 font-mono">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* Founder Name */}
               <div>
                 <label className="block text-xs font-black text-black uppercase tracking-wider mb-1">
-                  Primary Contact / Founder Name
+                  {t("field_full_name")}
                 </label>
                 <input
                   type="text"
@@ -158,7 +204,7 @@ export default function RegisterStartup() {
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   placeholder="e.g. Dr. Rajesh Verma"
-                  className="gov-input"
+                  className="w-full bg-white text-black text-xs font-bold py-2.5 px-3 border-2 border-black shadow-[3px_3px_0px_0px_#000] focus:bg-[#FFD93D] focus:outline-none"
                 />
               </div>
 
@@ -173,29 +219,29 @@ export default function RegisterStartup() {
                   value={startupName}
                   onChange={(e) => setStartupName(e.target.value)}
                   placeholder="e.g. HydroSense Innovations"
-                  className="gov-input"
+                  className="w-full bg-white text-black text-xs font-bold py-2.5 px-3 border-2 border-black shadow-[3px_3px_0px_0px_#000] focus:bg-[#FFD93D] focus:outline-none"
                 />
               </div>
 
               {/* Email */}
               <div>
                 <label className="block text-xs font-black text-black uppercase tracking-wider mb-1">
-                  Official Email Address
+                  {t("field_email")}
                 </label>
                 <input
                   type="email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="contact@hydrosense.in"
-                  className="gov-input"
+                  placeholder="founder@startup.com"
+                  className="w-full bg-white text-black text-xs font-bold py-2.5 px-3 border-2 border-black shadow-[3px_3px_0px_0px_#000] focus:bg-[#FFD93D] focus:outline-none"
                 />
               </div>
 
               {/* Password */}
               <div>
                 <label className="block text-xs font-black text-black uppercase tracking-wider mb-1">
-                  Account Password
+                  {t("field_password")}
                 </label>
                 <input
                   type="password"
@@ -203,38 +249,38 @@ export default function RegisterStartup() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="gov-input"
+                  className="w-full bg-white text-black text-xs font-bold py-2.5 px-3 border-2 border-black shadow-[3px_3px_0px_0px_#000] focus:bg-[#FFD93D] focus:outline-none"
                 />
               </div>
 
-              {/* Reg Number */}
+              {/* Registration Number */}
               <div>
                 <label className="block text-xs font-black text-black uppercase tracking-wider mb-1">
-                  Registration / CIN Number
+                  DPIIT / CIN / Registration Number
                 </label>
                 <input
                   type="text"
                   required
                   value={registrationNumber}
                   onChange={(e) => setRegistrationNumber(e.target.value)}
-                  placeholder="e.g. REG-2026-8819"
-                  className="gov-input font-mono"
+                  placeholder="e.g. DIPP12345 / U72900MH2024PTC123456"
+                  className="w-full bg-white text-black text-xs font-bold py-2.5 px-3 border-2 border-black shadow-[3px_3px_0px_0px_#000] focus:bg-[#FFD93D] focus:outline-none"
                 />
               </div>
 
-              {/* Sector Dropdown */}
+              {/* Primary Sector */}
               <div>
                 <label className="block text-xs font-black text-black uppercase tracking-wider mb-1">
-                  Primary Technology Sector
+                  Primary Innovation Sector
                 </label>
                 <select
                   value={sectorId}
                   onChange={(e) => setSectorId(e.target.value)}
-                  className="gov-input bg-white cursor-pointer font-bold"
+                  className="w-full bg-white text-black text-xs font-bold py-2.5 px-3 border-2 border-black shadow-[3px_3px_0px_0px_#000] focus:bg-[#FFD93D] focus:outline-none"
                 >
-                  {sectors.map((s) => (
-                    <option key={s.id} value={s.id}>
-                      {s.name}
+                  {sectors.map((sec) => (
+                    <option key={sec.id} value={sec.id}>
+                      {sec.name}
                     </option>
                   ))}
                 </select>
@@ -244,44 +290,42 @@ export default function RegisterStartup() {
             {/* Description */}
             <div>
               <label className="block text-xs font-black text-black uppercase tracking-wider mb-1">
-                Startup Product & Core Solution Summary
+                Solution & Technology Abstract
               </label>
               <textarea
                 rows={3}
                 required
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                placeholder="Describe your core product, technology stack, IoT sensors, AI models, or domain expertise..."
-                className="gov-input"
+                placeholder="Describe your core product technology, TRL level, patent status, and deployment capabilities..."
+                className="w-full bg-white text-black text-xs font-bold py-2.5 px-3 border-2 border-black shadow-[3px_3px_0px_0px_#000] focus:bg-[#FFD93D] focus:outline-none"
               />
             </div>
 
-            <div className="pt-2 flex justify-end">
-              <button
-                type="submit"
-                disabled={loading}
-                className="gov-btn-primary w-full md:w-auto px-8"
-              >
-                {loading ? (
-                  <>
-                    <Loader2 className="w-5 h-5 animate-spin stroke-[3px]" />
-                    <span>Creating Account...</span>
-                  </>
-                ) : (
-                  <>
-                    <span>Complete Registration</span>
-                    <ArrowRight className="w-5 h-5 stroke-[3px]" />
-                  </>
-                )}
-              </button>
-            </div>
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full mt-4 bg-[#FF6B6B] hover:bg-[#ff5252] text-black font-black uppercase text-xs py-4 border-3 border-black shadow-[4px_4px_0px_0px_#000] flex items-center justify-center gap-2 transition-all active:translate-x-0.5 active:translate-y-0.5"
+            >
+              {loading ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin stroke-[3px]" />
+                  <span>ONBOARDING STARTUP...</span>
+                </>
+              ) : (
+                <>
+                  <span>{t("btn_register")}</span>
+                  <ArrowRight className="w-4 h-4 stroke-[3px]" />
+                </>
+              )}
+            </button>
           </form>
         </div>
       </main>
 
       {/* Footer */}
-      <footer className="border-t-4 border-black bg-black py-4 text-center text-xs text-white font-mono font-bold uppercase relative z-10">
-        <p>SANKALP — Smart Innovation Procurement Platform | SIH 2026</p>
+      <footer className="border-t-4 border-black bg-black text-white py-4 text-center text-xs font-mono font-bold uppercase relative z-10">
+        <p>SANKALP — Smart Innovation Procurement Platform</p>
       </footer>
     </div>
   );

@@ -49,98 +49,6 @@
     --halftone-opacity: 1;
   }
 
-  /* =========================================================
-     2. GOVIZO (Navy & Crimson Royal Government Theme)
-     ========================================================= */
-  [data-theme="govizo"] {
-    --bg-page: #0B132B;
-    --bg-card: #1C2541;
-    --border-color: #3A506B;
-    --border-width: 1px;
-    --text-primary: #F8FAFC;
-    --text-secondary: #94A3B8;
-    
-    --brand-header: #0B132B;
-    --brand-header-text: #FFFFFF;
-    --brand-header-sub: #F59E0B;
-    
-    --brand-accent: #DC2626;
-    --brand-accent-hover: #B91C1C;
-    --brand-accent-text: #FFFFFF;
-    
-    --brand-secondary: #D97706;
-    --brand-secondary-hover: #B45309;
-    --brand-secondary-text: #FFFFFF;
-    
-    --brand-highlight: #F59E0B;
-    --brand-highlight-text: #0B132B;
-    
-    --hero-bg: #0B132B;
-    --hero-text: #FFFFFF;
-    --banner-bg: #1E293B;
-    --banner-text: #F8FAFC;
-    --counter-card-bg: #1C2541;
-    --counter-card-border: #3A506B;
-    --pillar-num-bg: #DC2626;
-    --pillar-num-text: #FFFFFF;
-    --footer-bg: #030712;
-    --footer-text: #94A3B8;
-
-    --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
-    --card-shadow-hover: 0 20px 30px -10px rgba(220, 38, 38, 0.3);
-    --btn-shadow: 0 4px 14px 0 rgba(220, 38, 38, 0.39);
-    --btn-shadow-hover: 0 6px 20px rgba(220, 38, 38, 0.5);
-    --font-heading: 'Space Grotesk', serif;
-    --font-body: 'Inter', sans-serif;
-    --halftone-opacity: 0;
-  }
-
-  /* =========================================================
-     3. ENTERPRISE (Slate Blue & Indigo Professional Theme)
-     ========================================================= */
-  [data-theme="light"] {
-    --bg-page: #F1F5F9;
-    --bg-card: #FFFFFF;
-    --border-color: #CBD5E1;
-    --border-width: 1px;
-    --text-primary: #0F172A;
-    --text-secondary: #475569;
-    
-    --brand-header: #1E293B;
-    --brand-header-text: #FFFFFF;
-    --brand-header-sub: #38BDF8;
-    
-    --brand-accent: #2563EB;
-    --brand-accent-hover: #1D4ED8;
-    --brand-accent-text: #FFFFFF;
-    
-    --brand-secondary: #4F46E5;
-    --brand-secondary-hover: #4338CA;
-    --brand-secondary-text: #FFFFFF;
-    
-    --brand-highlight: #38BDF8;
-    --brand-highlight-text: #0F172A;
-    
-    --hero-bg: #0F172A;
-    --hero-text: #FFFFFF;
-    --banner-bg: #1E293B;
-    --banner-text: #F8FAFC;
-    --counter-card-bg: #FFFFFF;
-    --counter-card-border: #E2E8F0;
-    --pillar-num-bg: #2563EB;
-    --pillar-num-text: #FFFFFF;
-    --footer-bg: #0F172A;
-    --footer-text: #94A3B8;
-
-    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --card-shadow-hover: 0 10px 15px -3px rgba(37, 99, 235, 0.2);
-    --btn-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.3);
-    --btn-shadow-hover: 0 6px 12px -2px rgba(37, 99, 235, 0.4);
-    --font-heading: 'Space Grotesk', sans-serif;
-    --font-body: 'Inter', sans-serif;
-    --halftone-opacity: 0;
-  }
-
   body {
     color: var(--text-primary);
     background-color: var(--bg-page);
@@ -148,7 +56,6 @@
     font-family: var(--font-body);
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
-    transition: background-color 0.3s ease, color 0.3s ease;
   }
 }
 

@@ -1,9 +1,10 @@
-"use me";
 "use client";
 
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { fetchWithAuth } from "@/lib/api";
+import { Navbar } from "@/components/Navbar";
+import { ArrowLeft, CheckCircle2, AlertTriangle, ShieldCheck, FileText, Layers, Award } from "lucide-react";
 
 export default function PilotDecisionPage() {
   const params = useParams();
@@ -191,19 +192,23 @@ export default function PilotDecisionPage() {
 
   if (loading) {
     return (
-      <div style={{ padding: "40px", color: "#fff", background: "#0a0d14", minHeight: "100vh" }}>
-        <h2>Loading Decision Brief...</h2>
+      <div className="min-h-screen bg-[#FFFDF5] text-slate-900 pb-16 font-sans bg-halftone">
+        <Navbar />
+        <div className="max-w-7xl mx-auto px-4 mt-12 text-center font-mono font-black text-xs uppercase">
+          Loading Decision Brief...
+        </div>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div style={{ padding: "40px", color: "#fff", background: "#0a0d14", minHeight: "100vh" }}>
-        <div style={{ padding: "20px", background: "rgba(239, 68, 68, 0.1)", border: "1px solid #ef4444", borderRadius: "8px", maxWidth: "600px" }}>
-          <h3 style={{ color: "#ef4444", marginTop: 0 }}>Decision Brief Unavailable</h3>
-          <p>{error}</p>
-          <button onClick={() => router.back()} style={{ padding: "8px 16px", background: "#3b82f6", color: "#fff", border: "none", borderRadius: "6px", cursor: "pointer" }}>
+      <div className="min-h-screen bg-[#FFFDF5] text-slate-900 pb-16 font-sans bg-halftone">
+        <Navbar />
+        <div className="max-w-xl mx-auto mt-12 p-6 bg-[#FF6B6B] border-4 border-black shadow-[8px_8px_0px_0px_#000] space-y-4">
+          <h3 className="font-black text-black font-display uppercase text-lg">Decision Brief Unavailable</h3>
+          <p className="text-xs font-bold text-black uppercase">{error}</p>
+          <button onClick={() => router.back()} className="gov-btn-secondary text-xs">
             ← Go Back
           </button>
         </div>
@@ -212,89 +217,93 @@ export default function PilotDecisionPage() {
   }
 
   return (
-    <div style={{ background: "#0a0d14", color: "#e2e8f0", minHeight: "100vh", padding: "32px 48px", fontFamily: "Inter, sans-serif" }}>
-      {/* Header Navigation */}
-      <div style={{ display: "flex", justifyContent: "space-[#3b82f6]", alignItems: "center", marginBottom: "24px" }}>
-        <div>
-          <button onClick={() => router.back()} style={{ background: "transparent", color: "#94a3b8", border: "none", cursor: "pointer", fontSize: "14px", marginBottom: "8px" }}>
-            ← Back to Pilots
-          </button>
-          <h1 style={{ fontSize: "28px", fontWeight: "700", color: "#f8fafc", margin: 0 }}>
-            Executive Decision Brief
-          </h1>
-          <p style={{ color: "#94a3b8", margin: "4px 0 0 0", fontSize: "14px" }}>
-            Consolidated evaluation & performance brief for procurement finalization.
-          </p>
-        </div>
-        <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
-          <span style={{ padding: "6px 14px", borderRadius: "20px", background: "rgba(16, 185, 129, 0.2)", color: "#10b981", border: "1px solid #10b981", fontSize: "13px", fontWeight: "600" }}>
-            PILOT STATUS: {brief.pilot_status.toUpperCase()}
-          </span>
-          <button onClick={() => router.push(`/challenges/${brief.challenge.id}/lifecycle`)} style={{ padding: "8px 16px", background: "rgba(59, 130, 246, 0.2)", color: "#60a5fa", border: "1px solid #3b82f6", borderRadius: "6px", cursor: "pointer", fontSize: "13px" }}>
-            View Challenge Story Lifecycle →
-          </button>
-        </div>
-      </div>
+    <div className="min-h-screen bg-[#FFFDF5] text-slate-900 pb-16 font-sans bg-halftone">
+      <Navbar />
 
-      {formError && (
-        <div style={{ padding: "12px 16px", background: "rgba(239, 68, 68, 0.15)", border: "1px solid #ef4444", borderRadius: "8px", color: "#fca5a5", marginBottom: "20px" }}>
-          ⚠️ {formError}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 space-y-8">
+        {/* Header Navigation */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b-4 border-black pb-6">
+          <div>
+            <button onClick={() => router.back()} className="text-xs font-black text-black uppercase flex items-center gap-1 mb-2 hover:underline">
+              <ArrowLeft className="w-4 h-4 stroke-[3px]" /> Back to Pilots
+            </button>
+            <h1 className="text-3xl font-black text-black tracking-tight font-display uppercase">
+              Executive Decision Brief
+            </h1>
+            <p className="text-xs text-black font-bold uppercase mt-1">
+              Consolidated evaluation & performance brief for procurement finalization.
+            </p>
+          </div>
+          <div className="flex items-center gap-3 flex-wrap font-mono font-black">
+            <span className="status-pill status-published">
+              PILOT STATUS: {brief.pilot_status.toUpperCase()}
+            </span>
+            <button onClick={() => router.push(`/challenges/${brief.challenge.id}/lifecycle`)} className="gov-btn-primary text-xs">
+              View Challenge Story Lifecycle →
+            </button>
+          </div>
         </div>
-      )}
 
-      {formSuccess && (
-        <div style={{ padding: "12px 16px", background: "rgba(16, 185, 129, 0.15)", border: "1px solid #10b981", borderRadius: "8px", color: "#6ee7b7", marginBottom: "20px" }}>
-          ✅ {formSuccess}
-        </div>
-      )}
+        {formError && (
+          <div className="p-4 bg-[#FF6B6B] border-4 border-black text-black text-xs font-black uppercase shadow-[4px_4px_0px_0px_#000]">
+            ⚠️ {formError}
+          </div>
+        )}
 
-      {/* 4-Grid Decision Brief Dashboard */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px", marginBottom: "32px" }}>
+        {formSuccess && (
+          <div className="p-4 bg-[#86EFAC] border-4 border-black text-black text-xs font-black uppercase shadow-[4px_4px_0px_0px_#000]">
+            ✅ {formSuccess}
+          </div>
+        )}
+
+        {/* 4-Grid Decision Brief Dashboard */}
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         
         {/* Card 1: Challenge Outcomes */}
-        <div style={{ background: "rgba(30, 41, 59, 0.6)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "12px", padding: "24px", backdropFilter: "blur(12px)" }}>
-          <h2 style={{ fontSize: "18px", color: "#38bdf8", marginTop: 0, marginBottom: "16px", display: "flex", alignItems: "center", gap: "8px" }}>
+        <div className="bg-white border-4 border-black p-6 space-y-4 shadow-[8px_8px_0px_0px_#000]">
+          <h2 className="text-lg font-black text-black font-display uppercase flex items-center gap-2">
             📋 1. Challenge & Problem Statement
           </h2>
-          <div style={{ marginBottom: "12px" }}>
-            <span style={{ fontSize: "12px", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.5px" }}>Challenge Title</span>
-            <div style={{ fontSize: "16px", fontWeight: "600", color: "#f1f5f9" }}>{brief.challenge.title}</div>
+          <div>
+            <span className="text-[10px] font-black text-black uppercase block tracking-wider">Challenge Title</span>
+            <div className="text-base font-bold text-black mt-0.5">{brief.challenge.title}</div>
           </div>
-          <div style={{ marginBottom: "12px" }}>
-            <span style={{ fontSize: "12px", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.5px" }}>Budget Ceiling</span>
-            <div style={{ fontSize: "15px", color: "#f1f5f9" }}>
+          <div>
+            <span className="text-[10px] font-black text-black uppercase block tracking-wider">Budget Ceiling</span>
+            <div className="text-sm font-mono font-black text-black bg-[#FFD93D] px-1 border border-black inline-block mt-0.5">
               {brief.challenge.currency} {brief.challenge.budget_ceiling ? brief.challenge.budget_ceiling.toLocaleString() : "N/A"}
             </div>
           </div>
           <div>
-            <span style={{ fontSize: "12px", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.5px" }}>Problem Statement</span>
-            <p style={{ fontSize: "13px", color: "#cbd5e1", lineHeight: "1.5", margin: "4px 0 0 0" }}>{brief.challenge.raw_problem_text}</p>
+            <span className="text-[10px] font-black text-black uppercase block tracking-wider">Problem Statement</span>
+            <p className="text-xs text-black font-bold leading-relaxed mt-1">{brief.challenge.raw_problem_text}</p>
           </div>
         </div>
 
         {/* Card 2: Application Score & Ranking */}
-        <div style={{ background: "rgba(30, 41, 59, 0.6)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "12px", padding: "24px", backdropFilter: "blur(12px)" }}>
-          <h2 style={{ fontSize: "18px", color: "#a855f7", marginTop: 0, marginBottom: "16px", display: "flex", alignItems: "center", gap: "8px" }}>
+        <div className="bg-white border-4 border-black p-6 space-y-4 shadow-[8px_8px_0px_0px_#000]">
+          <h2 className="text-lg font-black text-black font-display uppercase flex items-center gap-2">
             🏆 2. Candidate Evaluation & Ranking
           </h2>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", marginBottom: "16px" }}>
-            <div style={{ background: "rgba(15, 23, 42, 0.6)", padding: "12px", borderRadius: "8px", border: "1px solid rgba(255,255,255,0.05)" }}>
-              <span style={{ fontSize: "12px", color: "#94a3b8" }}>Startup Name</span>
-              <div style={{ fontSize: "16px", fontWeight: "700", color: "#f8fafc" }}>{brief.application_evaluation.startup_name}</div>
+          <div className="grid grid-cols-2 gap-3">
+            <div className="bg-[#FFFDF5] p-3 border-2 border-black">
+              <span className="text-[10px] font-black text-black uppercase block">Startup Name</span>
+              <div className="text-sm font-black text-black">{brief.application_evaluation.startup_name}</div>
             </div>
-            <div style={{ background: "rgba(15, 23, 42, 0.6)", padding: "12px", borderRadius: "8px", border: "1px solid rgba(255,255,255,0.05)" }}>
-              <span style={{ fontSize: "12px", color: "#94a3b8" }}>Rank Position</span>
-              <div style={{ fontSize: "18px", fontWeight: "800", color: "#c084fc" }}>#{brief.application_evaluation.rank} Shortlisted</div>
+            <div className="bg-[#FFFDF5] p-3 border-2 border-black">
+              <span className="text-[10px] font-black text-black uppercase block">Rank Position</span>
+              <div className="text-sm font-black text-black font-mono bg-[#C4B5FD] px-1 border border-black inline-block">#{brief.application_evaluation.rank} Shortlisted</div>
             </div>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
-            <div style={{ background: "rgba(15, 23, 42, 0.6)", padding: "12px", borderRadius: "8px", border: "1px solid rgba(255,255,255,0.05)" }}>
-              <span style={{ fontSize: "12px", color: "#94a3b8" }}>Weighted Final Score</span>
-              <div style={{ fontSize: "20px", fontWeight: "800", color: "#34d399" }}>{brief.application_evaluation.weighted_final_score} / 100</div>
+          <div className="grid grid-cols-2 gap-3">
+            <div className="bg-[#FFFDF5] p-3 border-2 border-black">
+              <span className="text-[10px] font-black text-black uppercase block">Weighted Final Score</span>
+              <div className="text-lg font-mono font-black text-black">{brief.application_evaluation.weighted_final_score} / 100</div>
             </div>
-            <div style={{ background: "rgba(15, 23, 42, 0.6)", padding: "12px", borderRadius: "8px", border: "1px solid rgba(255,255,255,0.05)" }}>
-              <span style={{ fontSize: "12px", color: "#94a3b8" }}>AI Match Score</span>
-              <div style={{ fontSize: "20px", fontWeight: "800", color: "#60a5fa" }}>
+            <div className="bg-[#FFFDF5] p-3 border-2 border-black">
+              <span className="text-[10px] font-black text-black uppercase block">AI Match Score</span>
+              <div className="text-lg font-mono font-black text-black bg-[#86EFAC] px-1 border border-black inline-block">
                 {brief.application_evaluation.ai_match_score ? `${brief.application_evaluation.ai_match_score}%` : "N/A"}
               </div>
             </div>
@@ -302,55 +311,55 @@ export default function PilotDecisionPage() {
         </div>
 
         {/* Card 3: KPI Metrics & AI Summary */}
-        <div style={{ background: "rgba(30, 41, 59, 0.6)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "12px", padding: "24px", backdropFilter: "blur(12px)" }}>
-          <h2 style={{ fontSize: "18px", color: "#34d399", marginTop: 0, marginBottom: "16px", display: "flex", alignItems: "center", gap: "8px" }}>
+        <div className="bg-white border-4 border-black p-6 space-y-4 shadow-[8px_8px_0px_0px_#000]">
+          <h2 className="text-lg font-black text-black font-display uppercase flex items-center gap-2">
             📊 3. KPI Achievement & AI Executive Summary
           </h2>
-          <div style={{ maxHeight: "140px", overflowY: "auto", marginBottom: "16px", paddingRight: "8px" }}>
+          <div className="max-h-36 overflow-y-auto space-y-2 font-mono">
             {brief.kpi_progress.kpis.map((k: any) => (
-              <div key={k.id} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "8px 0", borderBottom: "1px solid rgba(255,255,255,0.05)", fontSize: "13px" }}>
+              <div key={k.id} className="flex justify-between items-center text-xs pb-1 border-b border-black font-bold">
                 <div>
-                  <span style={{ color: "#f1f5f9", fontWeight: "600" }}>{k.name}</span>
-                  <span style={{ color: "#94a3b8", marginLeft: "6px", fontSize: "11px" }}>({k.unit})</span>
+                  <span className="text-black font-black uppercase">{k.name}</span>
+                  <span className="text-black/70 ml-1">({k.unit})</span>
                 </div>
-                <div style={{ textAlign: "right" }}>
-                  <span style={{ color: k.progress_percentage !== null ? "#34d399" : "#f59e0b", fontWeight: "700" }}>
+                <div className="text-right">
+                  <span className="font-black bg-[#86EFAC] px-1 border border-black">
                     {k.progress_percentage !== null ? `${k.progress_percentage}%` : "Uncalculated"}
                   </span>
                 </div>
               </div>
             ))}
           </div>
-          <div style={{ background: "rgba(15, 23, 42, 0.6)", padding: "12px", borderRadius: "8px", border: "1px solid rgba(255,255,255,0.05)", fontSize: "12px", color: "#cbd5e1", lineHeight: "1.4", maxHeight: "120px", overflowY: "auto" }}>
-            <span style={{ fontWeight: "700", color: "#38bdf8", display: "block", marginBottom: "4px" }}>🤖 AI Performance Summary</span>
-            {brief.kpi_progress.performance_summary || "Performance summary generated."}
+          <div className="bg-[#FFFDF5] p-3 border-2 border-black text-xs font-bold text-black space-y-1">
+            <span className="font-black uppercase block bg-[#FFD93D] px-1 border border-black inline-block">🤖 AI Performance Summary</span>
+            <p className="leading-relaxed">{brief.kpi_progress.performance_summary || "Performance summary generated."}</p>
           </div>
         </div>
 
         {/* Card 4: Financial Breakdown */}
-        <div style={{ background: "rgba(30, 41, 59, 0.6)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "12px", padding: "24px", backdropFilter: "blur(12px)" }}>
-          <h2 style={{ fontSize: "18px", color: "#f59e0b", marginTop: 0, marginBottom: "16px", display: "flex", alignItems: "center", gap: "8px" }}>
+        <div className="bg-white border-4 border-black p-6 space-y-4 shadow-[8px_8px_0px_0px_#000]">
+          <h2 className="text-lg font-black text-black font-display uppercase flex items-center gap-2">
             💰 4. Pilot Financials & Milestone History
           </h2>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "12px", marginBottom: "16px" }}>
-            <div style={{ background: "rgba(15, 23, 42, 0.6)", padding: "10px", borderRadius: "8px" }}>
-              <span style={{ fontSize: "11px", color: "#94a3b8" }}>Pilot Budget</span>
-              <div style={{ fontSize: "15px", fontWeight: "700", color: "#f8fafc" }}>₹{brief.financial_breakdown.pilot_budget.toLocaleString()}</div>
+          <div className="grid grid-cols-3 gap-2 font-mono">
+            <div className="bg-[#FFFDF5] p-2 border-2 border-black">
+              <span className="text-[9px] font-black text-black uppercase block">Pilot Budget</span>
+              <div className="text-xs font-black text-black">₹{brief.financial_breakdown.pilot_budget.toLocaleString()}</div>
             </div>
-            <div style={{ background: "rgba(15, 23, 42, 0.6)", padding: "10px", borderRadius: "8px" }}>
-              <span style={{ fontSize: "11px", color: "#94a3b8" }}>Total Paid</span>
-              <div style={{ fontSize: "15px", fontWeight: "700", color: "#34d399" }}>₹{brief.financial_breakdown.total_paid.toLocaleString()}</div>
+            <div className="bg-[#FFFDF5] p-2 border-2 border-black">
+              <span className="text-[9px] font-black text-black uppercase block">Total Paid</span>
+              <div className="text-xs font-black text-black bg-[#86EFAC] px-0.5 border border-black inline-block">₹{brief.financial_breakdown.total_paid.toLocaleString()}</div>
             </div>
-            <div style={{ background: "rgba(15, 23, 42, 0.6)", padding: "10px", borderRadius: "8px" }}>
-              <span style={{ fontSize: "11px", color: "#94a3b8" }}>Pending</span>
-              <div style={{ fontSize: "15px", fontWeight: "700", color: "#f59e0b" }}>₹{brief.financial_breakdown.total_pending.toLocaleString()}</div>
+            <div className="bg-[#FFFDF5] p-2 border-2 border-black">
+              <span className="text-[9px] font-black text-black uppercase block">Pending</span>
+              <div className="text-xs font-black text-black bg-[#FFD93D] px-0.5 border border-black inline-block">₹{brief.financial_breakdown.total_pending.toLocaleString()}</div>
             </div>
           </div>
-          <div style={{ maxHeight: "120px", overflowY: "auto" }}>
+          <div className="max-h-32 overflow-y-auto space-y-1.5 font-mono text-xs">
             {brief.financial_breakdown.milestones.map((m: any) => (
-              <div key={m.id} style={{ display: "flex", justifyContent: "space-between", padding: "6px 0", borderBottom: "1px solid rgba(255,255,255,0.05)", fontSize: "12px" }}>
+              <div key={m.id} className="flex justify-between pb-1 border-b border-black font-bold">
                 <span>{m.title}</span>
-                <span style={{ color: m.status === "paid" ? "#34d399" : "#cbd5e1" }}>
+                <span className="font-black">
                   ₹{m.payment_amount.toLocaleString()} ({m.status.toUpperCase()})
                 </span>
               </div>
@@ -361,67 +370,67 @@ export default function PilotDecisionPage() {
       </div>
 
       {/* Procurement Decision Workbench */}
-      <div style={{ background: "rgba(30, 41, 59, 0.8)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: "12px", padding: "28px" }}>
-        <h2 style={{ fontSize: "20px", color: "#f8fafc", marginTop: 0, marginBottom: "20px" }}>
+      <div className="bg-white border-4 border-black p-6 space-y-6 shadow-[8px_8px_0px_0px_#000]">
+        <h2 className="text-xl font-black text-black font-display uppercase">
           ⚖️ Procurement Decision Workbench
         </h2>
 
         {activeDecision ? (
-          <div style={{ background: "rgba(15, 23, 42, 0.8)", padding: "20px", borderRadius: "10px", border: "1px solid #3b82f6" }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px" }}>
-              <span style={{ fontSize: "16px", fontWeight: "700", color: "#60a5fa" }}>
+          <div className="bg-[#FFFDF5] border-3 border-black p-5 space-y-4">
+            <div className="flex justify-between items-center flex-wrap gap-2">
+              <span className="text-base font-black text-black font-mono uppercase bg-[#FFD93D] px-2 py-0.5 border border-black">
                 PENDING PROPOSAL: {activeDecision.decision.toUpperCase()}
               </span>
-              <span style={{ fontSize: "12px", padding: "4px 10px", background: "rgba(245, 158, 11, 0.2)", color: "#f59e0b", borderRadius: "12px", border: "1px solid #f59e0b" }}>
+              <span className="status-pill status-pending">
                 Status: {activeDecision.status.toUpperCase()}
               </span>
             </div>
-            <p style={{ fontSize: "14px", color: "#cbd5e1", marginBottom: "12px" }}>
+            <p className="text-xs font-bold text-black">
               <strong>Justification:</strong> {activeDecision.justification}
             </p>
             {activeDecision.decision === "scale_up" && (
-              <div style={{ fontSize: "14px", color: "#34d399", marginBottom: "12px" }}>
+              <div className="text-xs font-mono font-black text-black bg-[#86EFAC] px-2 py-1 border border-black inline-block">
                 <strong>Proposed Contract Value:</strong> ₹{activeDecision.contract_value?.toLocaleString()}
               </div>
             )}
             {activeDecision.decision === "extend_pilot" && (
-              <div style={{ fontSize: "14px", color: "#fbbf24", marginBottom: "12px" }}>
+              <div className="text-xs font-mono font-black text-black bg-[#FFD93D] px-2 py-1 border border-black inline-block">
                 <strong>Extended End Date:</strong> {activeDecision.extended_end_date}
               </div>
             )}
 
             {isSuperAdmin ? (
-              <div style={{ display: "flex", gap: "16px", marginTop: "20px", paddingTop: "16px", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
+              <div className="flex gap-4 pt-4 border-t-2 border-black">
                 <button
                   onClick={handleApprove}
                   disabled={submitting}
-                  style={{ padding: "10px 24px", background: "#10b981", color: "#fff", border: "none", borderRadius: "6px", fontWeight: "600", cursor: "pointer" }}
+                  className="gov-btn-primary text-xs"
                 >
                   ✓ Approve Decision (Finalize)
                 </button>
                 <button
                   onClick={() => setShowSendBackModal(true)}
                   disabled={submitting}
-                  style={{ padding: "10px 24px", background: "#ef4444", color: "#fff", border: "none", borderRadius: "6px", fontWeight: "600", cursor: "pointer" }}
+                  className="gov-btn-secondary text-xs"
                 >
                   ↩ Send Back to Officer
                 </button>
               </div>
             ) : (
-              <p style={{ fontSize: "13px", color: "#94a3b8", fontStyle: "italic", marginTop: "12px" }}>
+              <p className="text-xs text-black font-bold uppercase italic pt-2">
                 Proposal is currently pending Super Admin review & maker-checker sign-off.
               </p>
             )}
           </div>
         ) : (
-          <form onSubmit={handleProposeSubmit} style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: "20px" }}>
+          <form onSubmit={handleProposeSubmit} className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
-                <label style={{ display: "block", fontSize: "13px", color: "#94a3b8", marginBottom: "6px" }}>Procurement Decision</label>
+                <label className="text-xs font-black text-black uppercase block mb-1">Procurement Decision</label>
                 <select
                   value={decision}
                   onChange={(e) => setDecision(e.target.value)}
-                  style={{ width: "100%", padding: "10px", background: "#0f172a", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "6px", color: "#fff" }}
+                  className="w-full p-2.5 bg-white border-2 border-black text-xs font-bold text-black"
                 >
                   <option value="scale_up">Scale-Up (Commercial Contract)</option>
                   <option value="reject">Reject Solution</option>
@@ -432,38 +441,38 @@ export default function PilotDecisionPage() {
 
               {decision === "scale_up" && (
                 <div>
-                  <label style={{ display: "block", fontSize: "13px", color: "#94a3b8", marginBottom: "6px" }}>Scale-Up Contract Value (₹)</label>
+                  <label className="text-xs font-black text-black uppercase block mb-1">Scale-Up Contract Value (₹)</label>
                   <input
                     type="number"
                     value={contractValue}
                     onChange={(e) => setContractValue(e.target.value)}
                     placeholder="e.g. 5000000.00"
-                    style={{ width: "100%", padding: "10px", background: "#0f172a", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "6px", color: "#fff" }}
+                    className="w-full p-2.5 bg-white border-2 border-black text-xs font-mono font-bold text-black"
                   />
                 </div>
               )}
 
               {decision === "extend_pilot" && (
                 <div>
-                  <label style={{ display: "block", fontSize: "13px", color: "#94a3b8", marginBottom: "6px" }}>Extended End Date</label>
+                  <label className="text-xs font-black text-black uppercase block mb-1">Extended End Date</label>
                   <input
                     type="date"
                     value={extendedEndDate}
                     onChange={(e) => setExtendedEndDate(e.target.value)}
-                    style={{ width: "100%", padding: "10px", background: "#0f172a", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "6px", color: "#fff" }}
+                    className="w-full p-2.5 bg-white border-2 border-black text-xs font-bold text-black"
                   />
                 </div>
               )}
             </div>
 
             <div>
-              <label style={{ display: "block", fontSize: "13px", color: "#94a3b8", marginBottom: "6px" }}>Justification & Rationale</label>
+              <label className="text-xs font-black text-black uppercase block mb-1">Justification & Rationale</label>
               <textarea
                 rows={3}
                 value={justification}
                 onChange={(e) => setJustification(e.target.value)}
                 placeholder="Detail technical accuracy, KPI achievement metrics, and operational readiness..."
-                style={{ width: "100%", padding: "10px", background: "#0f172a", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "6px", color: "#fff" }}
+                className="w-full p-3 bg-white border-2 border-black text-xs font-bold text-black focus:bg-[#FFFDF5]"
                 required
               />
             </div>
@@ -471,32 +480,33 @@ export default function PilotDecisionPage() {
             <button
               type="submit"
               disabled={submitting}
-              style={{ alignSelf: "flex-start", padding: "10px 24px", background: "#3b82f6", color: "#fff", border: "none", borderRadius: "6px", fontWeight: "600", cursor: "pointer" }}
+              className="gov-btn-primary text-xs"
             >
               {submitting ? "Submitting..." : "Submit Procurement Proposal →"}
             </button>
           </form>
         )}
       </div>
+      </main>
 
       {/* Send Back Modal */}
       {showSendBackModal && (
-        <div style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0, background: "rgba(0,0,0,0.75)", display: "flex", justifyContent: "center", alignItems: "center", zIndex: 1000 }}>
-          <div style={{ background: "#1e293b", padding: "24px", borderRadius: "12px", width: "450px", border: "1px solid rgba(255,255,255,0.1)" }}>
-            <h3 style={{ marginTop: 0, color: "#ef4444" }}>Send Back Procurement Decision</h3>
-            <p style={{ fontSize: "13px", color: "#cbd5e1" }}>Provide required feedback notes explaining why the proposal is sent back to the officer.</p>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+          <div className="bg-white border-4 border-black p-6 max-w-md w-full space-y-4 shadow-[12px_12px_0px_0px_#000]">
+            <h3 className="text-base font-black text-black font-display uppercase">Send Back Procurement Decision</h3>
+            <p className="text-xs font-bold text-black uppercase">Provide required feedback notes explaining why the proposal is sent back to the officer.</p>
             <textarea
               rows={4}
               value={sendBackComments}
               onChange={(e) => setSendBackComments(e.target.value)}
               placeholder="Comments on budget, contract value or KPI progress..."
-              style={{ width: "100%", padding: "10px", background: "#0f172a", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "6px", color: "#fff", marginBottom: "16px" }}
+              className="w-full p-3 bg-white border-2 border-black text-xs font-bold text-black"
             />
-            <div style={{ display: "flex", justifyContent: "flex-end", gap: "12px" }}>
-              <button onClick={() => setShowSendBackModal(false)} style={{ padding: "8px 16px", background: "transparent", border: "1px solid #94a3b8", color: "#94a3b8", borderRadius: "6px", cursor: "pointer" }}>
+            <div className="flex justify-end gap-3 pt-2">
+              <button onClick={() => setShowSendBackModal(false)} className="gov-btn-secondary text-xs">
                 Cancel
               </button>
-              <button onClick={handleSendBack} style={{ padding: "8px 16px", background: "#ef4444", border: "none", color: "#fff", borderRadius: "6px", cursor: "pointer", fontWeight: "600" }}>
+              <button onClick={handleSendBack} className="gov-btn-primary text-xs">
                 Confirm Send-Back
               </button>
             </div>

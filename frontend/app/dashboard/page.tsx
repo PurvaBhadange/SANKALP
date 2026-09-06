@@ -124,29 +124,30 @@ export default function Dashboard() {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 space-y-8">
         {/* Welcome Section */}
-        <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+        <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm relative overflow-hidden">
+          <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-emerald-600 via-indigo-600 to-amber-500"></div>
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div className="flex items-center gap-4">
-              <div className="w-14 h-14 rounded-2xl bg-[#1b3b30] text-white flex items-center justify-center shrink-0 shadow-sm">
-                <UserIcon className="w-7 h-7" />
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-slate-900 to-indigo-950 text-white flex items-center justify-center shrink-0 shadow-md border border-slate-800">
+                <UserIcon className="w-7 h-7 text-amber-400" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-slate-900 tracking-tight font-serif">
+                <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight font-serif">
                   Welcome, {user.full_name}
                 </h1>
-                <p className="text-xs text-slate-600 mt-1 font-medium">
-                  SANKALP Government Innovation Procurement Workspace
+                <p className="text-xs text-slate-600 mt-1 font-semibold flex items-center gap-2">
+                  <span>SANKALP Government Innovation Procurement Workspace</span>
                 </p>
               </div>
             </div>
 
-            <div className="flex items-center gap-2">
-              <span className="status-pill status-active">
-                <CheckCircle2 className="w-3.5 h-3.5" />
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-50 text-emerald-800 border border-emerald-300 rounded-full text-xs font-bold shadow-sm">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
                 Active Session
               </span>
               {user.department && (
-                <span className="px-3 py-1 bg-emerald-50 text-[#1b3b30] border border-emerald-200 rounded-full text-xs font-mono font-bold">
+                <span className="px-3.5 py-1 bg-emerald-100 text-[#1b3b30] border border-emerald-300 rounded-full text-xs font-mono font-extrabold shadow-xs">
                   [{user.department.code}] {user.department.name}
                 </span>
               )}
@@ -156,27 +157,36 @@ export default function Dashboard() {
 
         {/* Quick Action Navigation Grid by Role */}
         <div className="space-y-4">
-          <h2 className="text-xs font-bold uppercase tracking-wider text-slate-500 font-mono">
-            Role Workspaces & Shortlists
-          </h2>
+          <div className="flex items-center justify-between">
+            <h2 className="text-xs font-bold uppercase tracking-wider text-slate-700 font-mono flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#1b3b30]"></span>
+              Role Workspaces & Shortlists
+            </h2>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {(isSuperAdmin || isOfficer || isProcurement) && (
               <Link
                 href="/challenges"
-                className="gov-card-interactive p-6 space-y-3 group"
+                className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-xl hover:border-emerald-400 transition-all duration-200 space-y-4 group flex flex-col justify-between"
               >
-                <div className="w-10 h-10 rounded-xl bg-[#1b3b30]/10 border border-[#1b3b30]/20 text-[#1b3b30] flex items-center justify-center group-hover:scale-105 transition-transform">
-                  <Building className="w-5 h-5" />
+                <div className="space-y-3">
+                  <div className="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-700 flex items-center justify-center group-hover:scale-110 group-hover:bg-emerald-600 group-hover:text-white transition-all shadow-sm">
+                    <Building className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-slate-900 text-base flex items-center justify-between group-hover:text-emerald-700 transition-colors">
+                      <span>Challenges Catalog</span>
+                      <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-emerald-600 group-hover:translate-x-1 transition-all" />
+                    </h3>
+                    <p className="text-xs text-slate-600 mt-1.5 font-normal leading-relaxed">
+                      Draft, approve, and manage public innovation procurement challenges.
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-bold text-slate-900 text-base flex items-center justify-between">
-                    <span>Challenges Catalog</span>
-                    <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#c85a32] transition-colors" />
-                  </h3>
-                  <p className="text-xs text-slate-600 mt-1 font-normal">
-                    Draft, approve, and manage public innovation procurement challenges.
-                  </p>
+                <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-emerald-800 font-bold">
+                  <span>Public & Drafts</span>
+                  <span className="px-2 py-0.5 bg-emerald-50 rounded border border-emerald-200">Catalog Workspace</span>
                 </div>
               </Link>
             )}
@@ -184,19 +194,25 @@ export default function Dashboard() {
             {(isSuperAdmin || isOfficer) && (
               <Link
                 href="/challenges/new"
-                className="gov-card-interactive p-6 space-y-3 group"
+                className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-xl hover:border-amber-400 transition-all duration-200 space-y-4 group flex flex-col justify-between"
               >
-                <div className="w-10 h-10 rounded-xl bg-[#c85a32]/10 border border-[#c85a32]/20 text-[#c85a32] flex items-center justify-center group-hover:scale-105 transition-transform">
-                  <Plus className="w-5 h-5" />
+                <div className="space-y-3">
+                  <div className="w-12 h-12 rounded-xl bg-amber-50 border border-amber-200 text-amber-700 flex items-center justify-center group-hover:scale-110 group-hover:bg-amber-500 group-hover:text-slate-950 transition-all shadow-sm">
+                    <Plus className="w-6 h-6 stroke-[2.5px]" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-slate-900 text-base flex items-center justify-between group-hover:text-amber-700 transition-colors">
+                      <span>Create New Challenge</span>
+                      <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-amber-600 group-hover:translate-x-1 transition-all" />
+                    </h3>
+                    <p className="text-xs text-slate-600 mt-1.5 font-normal leading-relaxed">
+                      Structure technical problem statements with AI assistance.
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-bold text-slate-900 text-base flex items-center justify-between">
-                    <span>Create New Challenge</span>
-                    <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#c85a32] transition-colors" />
-                  </h3>
-                  <p className="text-xs text-slate-600 mt-1 font-normal">
-                    Structure technical problem statements with AI assistance.
-                  </p>
+                <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-amber-800 font-bold">
+                  <span>AI Powered Structuring</span>
+                  <span className="px-2 py-0.5 bg-amber-50 rounded border border-amber-200">Draft Wizard</span>
                 </div>
               </Link>
             )}
@@ -204,19 +220,25 @@ export default function Dashboard() {
             {(isSuperAdmin || isEvaluator) && (
               <Link
                 href="/evaluator/dashboard"
-                className="gov-card-interactive p-6 space-y-3 group"
+                className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-xl hover:border-cyan-400 transition-all duration-200 space-y-4 group flex flex-col justify-between"
               >
-                <div className="w-10 h-10 rounded-xl bg-teal-50 border border-teal-200 text-teal-800 flex items-center justify-center group-hover:scale-105 transition-transform">
-                  <UserCheck className="w-5 h-5" />
+                <div className="space-y-3">
+                  <div className="w-12 h-12 rounded-xl bg-cyan-50 border border-cyan-200 text-cyan-700 flex items-center justify-center group-hover:scale-110 group-hover:bg-cyan-600 group-hover:text-white transition-all shadow-sm">
+                    <UserCheck className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-slate-900 text-base flex items-center justify-between group-hover:text-cyan-700 transition-colors">
+                      <span>Evaluator Panel</span>
+                      <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-cyan-600 group-hover:translate-x-1 transition-all" />
+                    </h3>
+                    <p className="text-xs text-slate-600 mt-1.5 font-normal leading-relaxed">
+                      Review assigned applicant proposals with blind scoring & SHA-256 hash chains.
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-bold text-slate-900 text-base flex items-center justify-between">
-                    <span>Evaluator Panel</span>
-                    <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#c85a32] transition-colors" />
-                  </h3>
-                  <p className="text-xs text-slate-600 mt-1 font-normal">
-                    Review assigned applicant proposals with blind scoring & SHA-256 hash chains.
-                  </p>
+                <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-cyan-800 font-bold">
+                  <span>Cryptographic Integrity</span>
+                  <span className="px-2 py-0.5 bg-cyan-50 rounded border border-cyan-200">Blind Scoring</span>
                 </div>
               </Link>
             )}
@@ -224,19 +246,25 @@ export default function Dashboard() {
             {(isSuperAdmin || isStartup) && (
               <Link
                 href="/startup/matches"
-                className="gov-card-interactive p-6 space-y-3 group"
+                className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-xl hover:border-purple-400 transition-all duration-200 space-y-4 group flex flex-col justify-between"
               >
-                <div className="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 flex items-center justify-center group-hover:scale-105 transition-transform">
-                  <Award className="w-5 h-5" />
+                <div className="space-y-3">
+                  <div className="w-12 h-12 rounded-xl bg-purple-50 border border-purple-200 text-purple-700 flex items-center justify-center group-hover:scale-110 group-hover:bg-purple-600 group-hover:text-white transition-all shadow-sm">
+                    <Award className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-slate-900 text-base flex items-center justify-between group-hover:text-purple-700 transition-colors">
+                      <span>Semantic Match Finder</span>
+                      <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-purple-600 group-hover:translate-x-1 transition-all" />
+                    </h3>
+                    <p className="text-xs text-slate-600 mt-1.5 font-normal leading-relaxed">
+                      Find challenges that match your startup's core technological profile.
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-bold text-slate-900 text-base flex items-center justify-between">
-                    <span>Semantic Match Finder</span>
-                    <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#c85a32] transition-colors" />
-                  </h3>
-                  <p className="text-xs text-slate-600 mt-1 font-normal">
-                    Find challenges that match your startup's core technological profile.
-                  </p>
+                <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-purple-800 font-bold">
+                  <span>pgvector Vector AI</span>
+                  <span className="px-2 py-0.5 bg-purple-50 rounded border border-purple-200">Similarity Engine</span>
                 </div>
               </Link>
             )}
@@ -244,19 +272,25 @@ export default function Dashboard() {
             {(isSuperAdmin || isStartup) && (
               <Link
                 href="/startup/pilots"
-                className="gov-card-interactive p-6 space-y-3 group"
+                className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-xl hover:border-rose-400 transition-all duration-200 space-y-4 group flex flex-col justify-between"
               >
-                <div className="w-10 h-10 rounded-xl bg-orange-50 border border-orange-200 text-orange-800 flex items-center justify-center group-hover:scale-105 transition-transform">
-                  <Briefcase className="w-5 h-5" />
+                <div className="space-y-3">
+                  <div className="w-12 h-12 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 flex items-center justify-center group-hover:scale-110 group-hover:bg-rose-600 group-hover:text-white transition-all shadow-sm">
+                    <Briefcase className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-slate-900 text-base flex items-center justify-between group-hover:text-rose-700 transition-colors">
+                      <span>Startup Pilots Tracker</span>
+                      <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-rose-600 group-hover:translate-x-1 transition-all" />
+                    </h3>
+                    <p className="text-xs text-slate-600 mt-1.5 font-normal leading-relaxed">
+                      Report milestone evidence and track KPI measurements.
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-bold text-slate-900 text-base flex items-center justify-between">
-                    <span>Startup Pilots Tracker</span>
-                    <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#c85a32] transition-colors" />
-                  </h3>
-                  <p className="text-xs text-slate-600 mt-1 font-normal">
-                    Report milestone evidence and track KPI measurements.
-                  </p>
+                <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-rose-800 font-bold">
+                  <span>Milestone Evidence</span>
+                  <span className="px-2 py-0.5 bg-rose-50 rounded border border-rose-200">KPI Tracking</span>
                 </div>
               </Link>
             )}
@@ -264,19 +298,25 @@ export default function Dashboard() {
             {(isSuperAdmin || isProcurement || isOfficer) && (
               <Link
                 href="/pilots"
-                className="gov-card-interactive p-6 space-y-3 group"
+                className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-xl hover:border-indigo-400 transition-all duration-200 space-y-4 group flex flex-col justify-between"
               >
-                <div className="w-10 h-10 rounded-xl bg-amber-50 border border-amber-200 text-amber-800 flex items-center justify-center group-hover:scale-105 transition-transform">
-                  <Layers className="w-5 h-5" />
+                <div className="space-y-3">
+                  <div className="w-12 h-12 rounded-xl bg-indigo-50 border border-indigo-200 text-indigo-700 flex items-center justify-center group-hover:scale-110 group-hover:bg-indigo-600 group-hover:text-white transition-all shadow-sm">
+                    <Layers className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-slate-900 text-base flex items-center justify-between group-hover:text-indigo-700 transition-colors">
+                      <span>Pilot & Contract Management</span>
+                      <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-indigo-600 group-hover:translate-x-1 transition-all" />
+                    </h3>
+                    <p className="text-xs text-slate-600 mt-1.5 font-normal leading-relaxed">
+                      Draft contract terms, verify payment stages, and analyze KPI performance.
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-bold text-slate-900 text-base flex items-center justify-between">
-                    <span>Pilot & Contract Management</span>
-                    <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#c85a32] transition-colors" />
-                  </h3>
-                  <p className="text-xs text-slate-600 mt-1 font-normal">
-                    Draft contract terms, verify payment stages, and analyze KPI performance.
-                  </p>
+                <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-indigo-800 font-bold">
+                  <span>Scale-Up & Contracts</span>
+                  <span className="px-2 py-0.5 bg-indigo-50 rounded border border-indigo-200">Procurement Module</span>
                 </div>
               </Link>
             )}
@@ -285,28 +325,29 @@ export default function Dashboard() {
 
         {/* User Account Details Section */}
         <div className="bg-white rounded-2xl p-6 border border-slate-200 space-y-4 shadow-sm">
-          <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500 font-mono border-b border-slate-100 pb-3">
+          <h3 className="text-xs font-bold uppercase tracking-wider text-slate-600 font-mono border-b border-slate-100 pb-3 flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-emerald-600"></span>
             User Account Details
           </h3>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-            <div>
-              <span className="text-slate-500 block uppercase tracking-wider text-[10px]">Email Address</span>
-              <span className="text-slate-900 font-semibold">{user.email}</span>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs">
+            <div className="p-3.5 bg-slate-50 rounded-xl border border-slate-200/80">
+              <span className="text-slate-500 block uppercase tracking-wider text-[10px] font-mono font-bold mb-1">Email Address</span>
+              <span className="text-slate-900 font-bold text-sm block">{user.email}</span>
             </div>
 
-            <div>
-              <span className="text-slate-500 block uppercase tracking-wider text-[10px]">Assigned Department</span>
-              <span className="text-slate-900 font-semibold">
+            <div className="p-3.5 bg-slate-50 rounded-xl border border-slate-200/80">
+              <span className="text-slate-500 block uppercase tracking-wider text-[10px] font-mono font-bold mb-1">Assigned Department</span>
+              <span className="text-slate-900 font-bold text-xs block">
                 {user.department ? `${user.department.name} (${user.department.code})` : "None"}
               </span>
             </div>
 
-            <div>
-              <span className="text-slate-500 block uppercase tracking-wider text-[10px]">Assigned Roles</span>
+            <div className="p-3.5 bg-slate-50 rounded-xl border border-slate-200/80">
+              <span className="text-slate-500 block uppercase tracking-wider text-[10px] font-mono font-bold mb-1">Assigned Roles</span>
               <div className="flex flex-wrap gap-1.5 mt-1">
                 {user.roles.map((r) => (
-                  <span key={r.id} className="px-2 py-0.5 bg-slate-100 text-[#1b3b30] rounded border border-slate-200 text-[10px] font-mono font-bold">
+                  <span key={r.id} className="px-2.5 py-1 bg-indigo-100 text-indigo-900 rounded-lg border border-indigo-200 text-[10px] font-mono font-extrabold shadow-xs">
                     {r.name}
                   </span>
                 ))}

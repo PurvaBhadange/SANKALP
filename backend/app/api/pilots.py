@@ -581,6 +581,24 @@ def get_my_pilots(
     return pilots
 
 
+@router.get("/pilots", response_model=List[PilotResponse])
+def get_all_pilots(
+    db: Session = Depends(get_db),
+    current_user: User = Depends(require_role("DEPARTMENT_OFFICER", "SUPER_ADMIN"))
+):
+    user_roles = [r.name for r in current_user.roles]
+    query = db.query(Pilot).options(
+        joinedload(Pilot.application).joinedload(ChallengeApplication.challenge),
+        joinedload(Pilot.application).joinedload(ChallengeApplication.startup),
+        joinedload(Pilot.milestones)
+    ).join(ChallengeApplication, Pilot.application_id == ChallengeApplication.id).join(Challenge, ChallengeApplication.challenge_id == Challenge.id)
+
+    if "SUPER_ADMIN" not in user_roles and "DEPARTMENT_OFFICER" in user_roles:
+        query = query.filter(Challenge.department_id == current_user.department_id)
+
+    return query.all()
+
+
 @router.get("/challenges/{id}/pilots", response_model=List[PilotResponse])
 def get_challenge_pilots(
     id: uuid.UUID,

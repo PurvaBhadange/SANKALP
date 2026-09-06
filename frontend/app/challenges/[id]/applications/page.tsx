@@ -8,6 +8,7 @@ import {
   ArrowLeft, Building2, CheckCircle2, Clock, XCircle, Sparkles, 
   Play, ShieldAlert, Loader2, ShieldCheck, FileCheck, AlertTriangle
 } from "lucide-react";
+import { Navbar } from "@/components/Navbar";
 
 export default function ChallengeApplicationsPage() {
   const { id } = useParams();
@@ -31,7 +32,7 @@ export default function ChallengeApplicationsPage() {
   const fetchChallengeAndApps = async () => {
     setLoading(true);
     setError(null);
-    const token = getCookie("token");
+    const token = getCookie("token") || getCookie("access_token") || localStorage.getItem("access_token");
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
     try {
@@ -68,7 +69,7 @@ export default function ChallengeApplicationsPage() {
     setActionLoading(`check-${appId}`);
     setError(null);
     setSuccessMsg(null);
-    const token = getCookie("token");
+    const token = getCookie("token") || getCookie("access_token") || localStorage.getItem("access_token");
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
     try {
@@ -94,7 +95,7 @@ export default function ChallengeApplicationsPage() {
     if (!waiverTarget || !waiverJustification.trim()) return;
     setActionLoading(`waiver-${waiverTarget.critId}`);
     setError(null);
-    const token = getCookie("token");
+    const token = getCookie("token") || getCookie("access_token") || localStorage.getItem("access_token");
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
     try {
@@ -128,7 +129,7 @@ export default function ChallengeApplicationsPage() {
   const handlePassCriteriaHuman = async (appId: string, critId: string) => {
     setActionLoading(`pass-${critId}`);
     setError(null);
-    const token = getCookie("token");
+    const token = getCookie("token") || getCookie("access_token") || localStorage.getItem("access_token");
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
     try {
@@ -158,7 +159,7 @@ export default function ChallengeApplicationsPage() {
     setActionLoading(`shortlist-${appId}`);
     setError(null);
     setSuccessMsg(null);
-    const token = getCookie("token");
+    const token = getCookie("token") || getCookie("access_token") || localStorage.getItem("access_token");
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
     try {
@@ -184,7 +185,7 @@ export default function ChallengeApplicationsPage() {
     if (!rejectAppId || !rejectReason.trim()) return;
     setActionLoading(`reject-${rejectAppId}`);
     setError(null);
-    const token = getCookie("token");
+    const token = getCookie("token") || getCookie("access_token") || localStorage.getItem("access_token");
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
     try {
@@ -213,53 +214,55 @@ export default function ChallengeApplicationsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 pb-16">
-      {/* Header Banner */}
-      <header className="border-b border-slate-800 bg-slate-900/50 backdrop-blur-md sticky top-0 z-10">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-4">
+    <div className="min-h-screen bg-[#FFFDF5] text-slate-900 pb-16 font-sans bg-halftone">
+      <Navbar />
+
+      {/* Main Container */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 space-y-6">
+        {/* Header Title Section */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b-4 border-black pb-6">
+          <div className="flex items-center gap-3">
             <Link
               href={`/challenges/${id}`}
-              className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors"
+              className="p-2 rounded-xl bg-white border-2 border-black text-black hover:bg-[#FFD93D] shadow-[2px_2px_0px_0px_#000] transition-all"
             >
-              <ArrowLeft className="w-5 h-5" />
+              <ArrowLeft className="w-4 h-4 stroke-[3px]" />
             </Link>
             <div>
-              <h1 className="text-xl font-bold text-white tracking-wide">Applicant Screening Workbench</h1>
-              <p className="text-xs text-slate-400">
+              <h1 className="text-2xl font-black text-black tracking-tight font-display uppercase flex items-center gap-2">
+                <Building2 className="w-6 h-6 text-black stroke-[3px]" /> Applicant Screening Workbench
+              </h1>
+              <p className="text-xs text-black font-bold font-mono mt-0.5 uppercase">
                 {challenge ? challenge.title : "Challenge Applications"}
               </p>
             </div>
           </div>
         </div>
-      </header>
 
-      {/* Main Container */}
-      <main className="max-w-7xl mx-auto px-6 mt-8 space-y-6">
         {error && (
-          <div className="p-4 bg-rose-500/10 border border-rose-500/20 rounded-2xl text-rose-400 text-sm flex items-center gap-2">
-            <ShieldAlert className="w-5 h-5 shrink-0" />
+          <div className="p-4 bg-[#FF6B6B] border-4 border-black text-black text-xs font-black uppercase shadow-[4px_4px_0px_0px_#000] flex items-center gap-2">
+            <ShieldAlert className="w-5 h-5 shrink-0 stroke-[3px]" />
             <span>{error}</span>
           </div>
         )}
 
         {successMsg && (
-          <div className="p-4 bg-emerald-500/10 border border-emerald-500/20 rounded-2xl text-emerald-400 text-sm flex items-center gap-2">
-            <CheckCircle2 className="w-5 h-5 shrink-0" />
+          <div className="p-4 bg-[#86EFAC] border-4 border-black text-black text-xs font-black uppercase shadow-[4px_4px_0px_0px_#000] flex items-center gap-2">
+            <CheckCircle2 className="w-5 h-5 shrink-0 stroke-[3px]" />
             <span>{successMsg}</span>
           </div>
         )}
 
         {loading ? (
-          <div className="flex flex-col items-center justify-center py-20 text-slate-400 gap-3">
-            <Loader2 className="w-8 h-8 animate-spin text-indigo-500" />
-            <p className="text-sm">Loading applicants and screening state...</p>
+          <div className="flex flex-col items-center justify-center py-20 text-black gap-3 font-mono font-black">
+            <Loader2 className="w-10 h-10 animate-spin text-black stroke-[3px]" />
+            <p className="text-xs uppercase">Loading applicants and screening state...</p>
           </div>
         ) : applications.length === 0 ? (
-          <div className="glass-card rounded-2xl p-12 text-center space-y-3">
-            <Building2 className="w-12 h-12 text-slate-600 mx-auto" />
-            <h3 className="text-base font-bold text-white">No Applications Received Yet</h3>
-            <p className="text-slate-400 text-xs">Startups have not yet submitted applications to this published challenge.</p>
+          <div className="bg-white p-12 text-center border-4 border-black shadow-[8px_8px_0px_0px_#000] space-y-3">
+            <Building2 className="w-12 h-12 text-black mx-auto stroke-[3px]" />
+            <h3 className="text-base font-black text-black font-display uppercase">No Applications Received Yet</h3>
+            <p className="text-black text-xs font-bold uppercase">Startups have not yet submitted applications to this published challenge.</p>
           </div>
         ) : (
           <div className="space-y-6">
@@ -268,41 +271,41 @@ export default function ChallengeApplicationsPage() {
                 app.eligibility_results.every((r: any) => r.final_passed === true || r.waived === true);
 
               return (
-                <div key={app.id} className="glass-card rounded-2xl p-6 space-y-6 border border-slate-800">
+                <div key={app.id} className="bg-white border-4 border-black p-6 space-y-6 shadow-[8px_8px_0px_0px_#000]">
                   {/* Top Bar */}
-                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800 pb-4">
+                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b-2 border-black pb-4">
                     <div>
-                      <div className="flex items-center gap-2">
-                        <span className="font-bold text-lg text-white">{app.startup?.name || "Startup Name"}</span>
-                        <span className="text-xs font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded border border-slate-800">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="font-black text-lg text-black uppercase">{app.startup?.name || "Startup Name"}</span>
+                        <span className="text-xs font-mono font-bold text-black bg-[#FFFDF5] px-2 py-0.5 border border-black">
                           {app.startup?.registration_number}
                         </span>
-                        <span className="text-xs font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                        <span className={`status-pill ${app.status === "shortlisted" || app.status === "selected" ? "status-published" : "status-pending"}`}>
                           {app.status}
                         </span>
                       </div>
-                      <p className="text-xs text-slate-400 mt-1">
+                      <p className="text-xs text-black font-bold mt-1 font-mono uppercase">
                         Sector: {app.startup?.sector?.name || "N/A"} | Team Size: {app.startup?.team_size || "N/A"} | Submitted: {new Date(app.submitted_at).toLocaleDateString()}
                       </p>
                     </div>
 
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-3 flex-wrap">
                       {app.ai_match_score !== null && (
-                        <div className="flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-xl">
-                          <Sparkles className="w-4 h-4 text-emerald-400" />
-                          <span className="text-xs font-bold text-emerald-400">{Number(app.ai_match_score).toFixed(1)}% Match</span>
+                        <div className="flex items-center gap-2 bg-[#86EFAC] border-2 border-black px-3 py-1.5 shadow-[2px_2px_0px_0px_#000]">
+                          <Sparkles className="w-4 h-4 text-black stroke-[3px]" />
+                          <span className="text-xs font-black text-black font-mono">{Number(app.ai_match_score).toFixed(1)}% Match</span>
                         </div>
                       )}
 
                       <button
                         onClick={() => handleRunEligibilityCheck(app.id)}
                         disabled={actionLoading === `check-${app.id}`}
-                        className="flex items-center gap-1.5 px-3.5 py-2 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white text-xs font-bold rounded-xl transition-all shadow-md shadow-indigo-500/10"
+                        className="gov-btn-primary text-xs"
                       >
                         {actionLoading === `check-${app.id}` ? (
-                          <Loader2 className="w-4 h-4 animate-spin" />
+                          <Loader2 className="w-4 h-4 animate-spin stroke-[3px]" />
                         ) : (
-                          <Play className="w-4 h-4 fill-white" />
+                          <Play className="w-4 h-4 fill-black stroke-[3px]" />
                         )}
                         <span>Run Screening</span>
                       </button>
@@ -312,14 +315,14 @@ export default function ChallengeApplicationsPage() {
                   {/* Dual-Layer Screening Breakdown Table */}
                   {app.eligibility_results && app.eligibility_results.length > 0 ? (
                     <div className="space-y-3">
-                      <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest flex items-center gap-2">
-                        <FileCheck className="w-4 h-4 text-indigo-400" />
+                      <h4 className="text-xs font-black text-black uppercase tracking-widest flex items-center gap-2">
+                        <FileCheck className="w-4 h-4 text-black stroke-[3px]" />
                         Dual-Layer Screening Matrix
                       </h4>
 
-                      <div className="overflow-x-auto">
+                      <div className="overflow-x-auto border-2 border-black">
                         <table className="w-full text-left text-xs">
-                          <thead className="bg-slate-900/80 text-slate-400 uppercase tracking-wider font-bold text-[10px] border-b border-slate-800">
+                          <thead className="bg-[#FFD93D] text-black uppercase font-black text-[10px] border-b-2 border-black">
                             <tr>
                               <th className="p-3">Criteria Key</th>
                               <th className="p-3">Layer 1 (Rules)</th>
@@ -329,47 +332,47 @@ export default function ChallengeApplicationsPage() {
                               <th className="p-3 text-right">Actions</th>
                             </tr>
                           </thead>
-                          <tbody className="divide-y divide-slate-800/60">
+                          <tbody className="divide-y divide-black font-bold">
                             {app.eligibility_results.map((r: any) => {
                               const needsReview = r.final_passed === null && !r.waived;
 
                               return (
-                                <tr key={r.id} className="hover:bg-slate-900/40">
-                                  <td className="p-3 font-mono font-bold text-white">
+                                <tr key={r.id} className="hover:bg-[#FFFDF5]">
+                                  <td className="p-3 font-mono font-black text-black">
                                     {r.criteria?.criteria_key}
                                   </td>
                                   <td className="p-3">
                                     {r.rules_engine_passed ? (
-                                      <span className="text-emerald-400 font-bold flex items-center gap-1">✓ Pass</span>
+                                      <span className="text-black font-black bg-[#86EFAC] px-1.5 py-0.5 border border-black">✓ Pass</span>
                                     ) : (
-                                      <span className="text-rose-400 font-bold flex items-center gap-1">✗ Fail</span>
+                                      <span className="text-black font-black bg-[#FF6B6B] px-1.5 py-0.5 border border-black">✗ Fail</span>
                                     )}
                                   </td>
                                   <td className="p-3">
                                     {r.ai_verification_passed === true ? (
-                                      <span className="text-emerald-400 font-bold">✓ Verified</span>
+                                      <span className="text-black font-black bg-[#86EFAC] px-1.5 py-0.5 border border-black">✓ Verified</span>
                                     ) : r.ai_verification_passed === false ? (
-                                      <span className="text-rose-400 font-bold">✗ Document Failed</span>
+                                      <span className="text-black font-black bg-[#FF6B6B] px-1.5 py-0.5 border border-black">✗ Document Failed</span>
                                     ) : (
                                       <span className="text-slate-500 italic">N/A</span>
                                     )}
                                   </td>
-                                  <td className="p-3">
+                                  <td className="p-3 font-mono">
                                     {r.waived ? (
-                                      <span className="px-2 py-0.5 rounded bg-amber-500/10 text-amber-300 border border-amber-500/20 font-bold text-[10px]">
+                                      <span className="px-2 py-0.5 bg-[#FFD93D] text-black border border-black font-black text-[10px]">
                                         Waived
                                       </span>
                                     ) : r.final_passed === true ? (
-                                      <span className="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold text-[10px]">
+                                      <span className="px-2 py-0.5 bg-[#86EFAC] text-black border border-black font-black text-[10px]">
                                         Passed
                                       </span>
                                     ) : (
-                                      <span className="px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 border border-amber-500/30 font-bold text-[10px] flex items-center gap-1">
-                                        <AlertTriangle className="w-3 h-3" /> Needs Human Review
+                                      <span className="px-2 py-0.5 bg-[#FF6B6B] text-black border border-black font-black text-[10px] inline-flex items-center gap-1">
+                                        <AlertTriangle className="w-3 h-3 stroke-[3px]" /> Needs Human Review
                                       </span>
                                     )}
                                   </td>
-                                  <td className="p-3 text-slate-400 font-mono text-[10px]">
+                                  <td className="p-3 text-black font-mono text-[10px]">
                                     {r.checker ? r.checker.full_name : "Automated"}
                                   </td>
                                   <td className="p-3 text-right space-x-2">
@@ -377,13 +380,13 @@ export default function ChallengeApplicationsPage() {
                                       <>
                                         <button
                                           onClick={() => handlePassCriteriaHuman(app.id, r.criteria_id)}
-                                          className="px-2.5 py-1 bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 font-bold rounded-lg text-[10px] transition-all border border-emerald-500/30"
+                                          className="gov-btn-primary text-[10px] py-1 px-2"
                                         >
                                           Pass
                                         </button>
                                         <button
                                           onClick={() => setWaiverTarget({ appId: app.id, critId: r.criteria_id, critKey: r.criteria?.criteria_key })}
-                                          className="px-2.5 py-1 bg-amber-600/20 hover:bg-amber-600/30 text-amber-300 font-bold rounded-lg text-[10px] transition-all border border-amber-500/30"
+                                          className="gov-btn-secondary text-[10px] py-1 px-2"
                                         >
                                           Waive
                                         </button>
@@ -398,16 +401,16 @@ export default function ChallengeApplicationsPage() {
                       </div>
                     </div>
                   ) : (
-                    <p className="text-xs text-amber-400 bg-amber-500/10 p-3 rounded-xl border border-amber-500/20">
+                    <p className="text-xs text-black font-bold uppercase bg-[#FFD93D] p-3 border-2 border-black">
                       Eligibility check has not been executed yet. Click "Run Screening" to evaluate eligibility.
                     </p>
                   )}
 
                   {/* Actions Footer */}
-                  <div className="flex justify-end items-center gap-3 border-t border-slate-800 pt-4">
+                  <div className="flex justify-end items-center gap-3 border-t-2 border-black pt-4">
                     <button
                       onClick={() => setRejectAppId(app.id)}
-                      className="px-4 py-2 bg-rose-600/20 hover:bg-rose-600/30 text-rose-300 text-xs font-bold rounded-xl border border-rose-500/30 transition-all"
+                      className="gov-btn-secondary text-xs"
                     >
                       Reject Application
                     </button>
@@ -418,7 +421,7 @@ export default function ChallengeApplicationsPage() {
                           setActionLoading(`pilot-${app.id}`);
                           setError(null);
                           setSuccessMsg(null);
-                          const token = getCookie("token");
+                          const token = getCookie("token") || getCookie("access_token") || localStorage.getItem("access_token");
                           const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
                           try {
                             const res = await fetch(`${apiUrl}/applications/${app.id}/select-for-pilot`, {
@@ -440,12 +443,12 @@ export default function ChallengeApplicationsPage() {
                           }
                         }}
                         disabled={actionLoading === `pilot-${app.id}`}
-                        className="flex items-center gap-1.5 px-4 py-2 bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold rounded-xl transition-all shadow-lg shadow-purple-500/20"
+                        className="gov-btn-primary text-xs flex items-center gap-1.5"
                       >
                         {actionLoading === `pilot-${app.id}` ? (
-                          <Loader2 className="w-4 h-4 animate-spin" />
+                          <Loader2 className="w-4 h-4 animate-spin stroke-[3px]" />
                         ) : (
-                          <Sparkles className="w-4 h-4 fill-white" />
+                          <Sparkles className="w-4 h-4 fill-black stroke-[3px]" />
                         )}
                         <span>Select for Pilot</span>
                       </button>
@@ -455,12 +458,12 @@ export default function ChallengeApplicationsPage() {
                       <button
                         onClick={() => handleShortlist(app.id)}
                         disabled={!allPassedOrWaived || actionLoading === `shortlist-${app.id}`}
-                        className="flex items-center gap-1.5 px-4 py-2 bg-emerald-600 hover:bg-emerald-500 disabled:opacity-40 text-white text-xs font-bold rounded-xl transition-all shadow-lg shadow-emerald-500/20"
+                        className="gov-btn-primary text-xs flex items-center gap-1.5"
                       >
                         {actionLoading === `shortlist-${app.id}` ? (
-                          <Loader2 className="w-4 h-4 animate-spin" />
+                          <Loader2 className="w-4 h-4 animate-spin stroke-[3px]" />
                         ) : (
-                          <ShieldCheck className="w-4 h-4" />
+                          <ShieldCheck className="w-4 h-4 stroke-[3px]" />
                         )}
                         <span>Shortlist Candidate</span>
                       </button>
@@ -475,11 +478,11 @@ export default function ChallengeApplicationsPage() {
 
       {/* Waiver Justification Modal */}
       {waiverTarget && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4">
-          <div className="glass-card max-w-md w-full rounded-2xl p-6 space-y-4 border border-slate-700 shadow-2xl">
-            <h3 className="text-base font-bold text-white">Apply Criteria Waiver</h3>
-            <p className="text-xs text-slate-400">
-              Provide an official waiver justification for criteria: <span className="font-mono text-indigo-400">{waiverTarget.critKey}</span>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+          <div className="bg-white border-4 border-black p-6 max-w-md w-full space-y-4 shadow-[12px_12px_0px_0px_#000]">
+            <h3 className="text-base font-black text-black font-display uppercase">Apply Criteria Waiver</h3>
+            <p className="text-xs text-black font-bold uppercase">
+              Provide an official waiver justification for criteria: <span className="font-mono bg-[#FFD93D] px-1 border border-black">{waiverTarget.critKey}</span>
             </p>
 
             <textarea
@@ -487,20 +490,20 @@ export default function ChallengeApplicationsPage() {
               value={waiverJustification}
               onChange={(e) => setWaiverJustification(e.target.value)}
               placeholder="State regulatory justification or executive waiver reason..."
-              className="w-full p-3 bg-slate-900 border border-slate-800 rounded-xl text-xs text-white focus:outline-none focus:border-indigo-500"
+              className="w-full p-3 bg-white border-2 border-black text-xs font-bold text-black focus:outline-none focus:bg-[#FFFDF5]"
             />
 
             <div className="flex justify-end gap-3 pt-2">
               <button
                 onClick={() => setWaiverTarget(null)}
-                className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl"
+                className="gov-btn-secondary text-xs"
               >
                 Cancel
               </button>
               <button
                 onClick={handleApplyWaiver}
                 disabled={!waiverJustification.trim()}
-                className="px-4 py-2 bg-amber-600 hover:bg-amber-500 disabled:opacity-50 text-white text-xs font-bold rounded-xl"
+                className="gov-btn-primary text-xs"
               >
                 Confirm Waiver
               </button>
@@ -511,30 +514,30 @@ export default function ChallengeApplicationsPage() {
 
       {/* Rejection Reason Modal */}
       {rejectAppId && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4">
-          <div className="glass-card max-w-md w-full rounded-2xl p-6 space-y-4 border border-slate-700 shadow-2xl">
-            <h3 className="text-base font-bold text-white">Reject Application</h3>
-            <p className="text-xs text-slate-400">Specify reason for rejecting candidate application:</p>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+          <div className="bg-white border-4 border-black p-6 max-w-md w-full space-y-4 shadow-[12px_12px_0px_0px_#000]">
+            <h3 className="text-base font-black text-black font-display uppercase">Reject Application</h3>
+            <p className="text-xs text-black font-bold uppercase">Specify reason for rejecting candidate application:</p>
 
             <textarea
               rows={3}
               value={rejectReason}
               onChange={(e) => setRejectReason(e.target.value)}
               placeholder="e.g. Startup does not satisfy minimum turnover and security eligibility constraints."
-              className="w-full p-3 bg-slate-900 border border-slate-800 rounded-xl text-xs text-white focus:outline-none focus:border-indigo-500"
+              className="w-full p-3 bg-white border-2 border-black text-xs font-bold text-black focus:outline-none focus:bg-[#FFFDF5]"
             />
 
             <div className="flex justify-end gap-3 pt-2">
               <button
                 onClick={() => setRejectAppId(null)}
-                className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl"
+                className="gov-btn-secondary text-xs"
               >
                 Cancel
               </button>
               <button
                 onClick={handleReject}
                 disabled={!rejectReason.trim()}
-                className="px-4 py-2 bg-rose-600 hover:bg-rose-500 disabled:opacity-50 text-white text-xs font-bold rounded-xl"
+                className="gov-btn-primary text-xs"
               >
                 Confirm Rejection
               </button>
